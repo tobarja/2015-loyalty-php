@@ -1,0 +1,24 @@
+{
+    "name": "sandhillscapstone/2015-loyalty-php",
+    "description": "Application to track buy X, get 1 free loyalty purchases.",
+    "require": {
+        "slim/slim": "2.*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Frank Ball"
+        },
+        {
+            "name": "Russell Dusch"
+        },
+        {
+            "name": "Andrew Thompson",
+            "email": "andrew@tobarja.com",
+            "homepage": "http://tobarja.com"
+        },
+        {
+            "name": "Brandon Ward"
+        }
+    ]
+}
