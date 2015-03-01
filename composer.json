@@ -20,5 +20,10 @@
         {
             "name": "Brandon Ward"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "Loyalty\\": "src/"
+        }
+    }
 }
