@@ -1,7 +1,11 @@
 <?php
 require '../vendor/autoload.php';
 
-$app = new \Slim\Slim();
+$config = array(
+    'templates.path' => '../templates'
+);
+
+$app = new \Slim\Slim($config);
 
 new \Loyalty\Home($app);
 
