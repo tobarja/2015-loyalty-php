@@ -2,7 +2,9 @@
     "name": "sandhillscapstone/2015-loyalty-php",
     "description": "Application to track buy X, get 1 free loyalty purchases.",
     "require": {
-        "slim/slim": "2.*"
+        "slim/slim": "2.*",
+        "slim/views": "0.1.*",
+        "twig/twig": "~1.18"
     },
     "license": "MIT",
     "authors": [
