@@ -12,5 +12,5 @@ Install Virtualbox and Vagrant, if you do not already have them.
 After you have started the virtual machine, you can browse the site at: (http://192.168.22.2/).
 
 ### Other Useful commands
-* `vagrant ssh -c 'composer -d=/var/www update'` Run this if the composer.json file changes.
+* `vagrant ssh -c 'composer -d=/var/www install'` Run this if the composer.json file changes.
 * `vagrant ssh -c 'sudo tail -f /var/log/apache2/error.log'` Run this to see Apache/PHP errors in real time. Press `Ctrl-C` to stop.
