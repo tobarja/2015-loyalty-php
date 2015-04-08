@@ -1,7 +1,7 @@
 <?php
 $salt = "Zo4rU5Z1YyKJAASY0PT6EUg7BBYdlEhPaNLuxAwU8lqu1ElzHv0Ri7EM6irpx5w";
 $hostname = "localhost";
-$dbname = "customertest";
+$dbname = "coffee";
 $user = "user";
 $pw = "root";
 $connstr = "mysql:host=$hostname;dbname=$dbname";

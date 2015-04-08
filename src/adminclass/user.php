@@ -28,7 +28,7 @@
 		 
 		 try{
 			$hostname = "localhost";
-			$dbname = "customertest";
+			$dbname = "coffee";
 			$user = "user";
 			$pw = "root";
 			$connstr = "mysql:host=$hostname;dbname=$dbname";
@@ -63,7 +63,7 @@
 		$correct = false;
 			try {
 				$hostname = "localhost";
-				$dbname = "customertest";
+				$dbname = "coffee";
 				$user = "user";
 				$pw = "root";
 				$connstr = "mysql:host=$hostname;dbname=$dbname";

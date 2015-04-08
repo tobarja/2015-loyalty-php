@@ -1,25 +1,18 @@
 <?php
 session_start();
 
-if (isset($_SESSION["logged_in"]) && isset($_SESSION["admin_logged_in"]))
+if (isset($_SESSION["logged_in"]))
 {
 ?>
+
+
 <!DOCTYPE html>
 
 <html>
 
 <head>
 
-<script>
-function checkForm(form){
-if(form.password.value != form.conpassword.value){
-alert("Error: passwords do not match");
-return false;
-}
-}
-</script>
-
-<title>MeanBean - Admin - Edit Customer</title>
+	<title>MeanBean - Admin - Add Customer</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -79,67 +72,48 @@ return false;
 
 <br>
 <table>
-<?php
-$employeeid = $_GET["employeeid"];
-echo"<form onsubmit='return checkForm(this);' action='EmployeeEditAdmin.php"."?employeeid=".$employeeid."' method='post'>";
-?>
+
 <tr>
-<td style="border-bottom:1px solid black;font-size:20px;">Edit Employee</td>
+<td style="border-bottom:1px solid black;font-size:20px;">Add Customer</td>
 <td style="border-bottom:1px solid black;"></td>
 </tr>
-<?php include 'EmployeeEditPopulate.php'; ?>
+<form action="CustomerAdd.php" method="post">
 <tr>
 <td >First Name:</td>
-
-
-<td ><input name="firstname" type="text" value="<?php echo $row['FirstName'] ?>" /></td>
+<td ><input name="firstname" type="text" /></td>
 </tr>
 
 <tr>
 <td >Last Name:</td>
-<td ><input name="lastname" type="text" value="<?php echo $row['LastName'] ?>" /></td>
+<td ><input name="lastname" type="text" /></td>
 </tr>
 
 <tr>
 <td >Telephone:</td>
-<td ><input name="telephone" type="text" value="<?php echo $row['telephone'] ?>" /></td>
+<td ><input name="telephone" type="text" /></td>
 </tr>
 
 <tr>
-<td >Email</td>
-<td ><input name="email" type="text" value="<?php echo $row['Email'] ?>" /></td>
+<td >E-mail:</td>
+<td ><input name="email" type="text" /></td>
 </tr>
 
 <tr>
-<td >Login:</td>
-<td ><input name="login" type="text" value="<?php echo $row['login'] ?>" /></td>
-</tr>
-
-<tr>
-<td >Password:</td>
-<td ><input name="password" type="password" value="" /></td>
-</tr>
-
-<tr>
-<td >Confirm Password:</td>
-<td ><input name="conpassword" type="password" value="" /></td>
+<td >Points:</td>
+<td ><input name="points" type="text" /></td>
 </tr>
 
 <tr>
 <td></td>
-<td><input type="submit" name="save" value="Save" /><input type="submit" name="delete" value="Delete" /></td>
-<td></td>
+<td><input type="submit" /></td>
 </tr>
 
-</form>
 </table>
-
-
+</form>
 
 </body>
 
 </html>
-
 
 <?php
 }

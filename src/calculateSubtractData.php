@@ -6,7 +6,7 @@ include 'connection.php';
 $updatenum = $_POST['updatenum'];
 $customerid = $_POST['customerid'];
 
-$sql = "update customertest set Points = (Points - :updatenum) 
+$sql = "update customer set Points = (Points - :updatenum) 
 where CustomerID=:customerid;";
 $statement = $conn -> prepare($sql);
 
@@ -17,7 +17,7 @@ $queryComplete = $statement->execute();
 
 if($queryComplete){
 
-$sql = "select points from customertest where CustomerID=:customerid;";
+$sql = "select points from customer where CustomerID=:customerid;";
 $statement = $conn -> prepare($sql);
 
 $statement -> bindValue(':customerid', $customerid);

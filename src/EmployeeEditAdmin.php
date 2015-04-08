@@ -20,7 +20,7 @@ $password = mysql_real_escape_string($password);
 
 if (isset($_POST['save'])) {
 
-$sql = "UPDATE EmployeeTest SET FirstName = :fname, LastName = :lname, telephone = :telephone, Email= :email, login = :login, password = :password 
+$sql = "UPDATE employee SET FirstName = :fname, LastName = :lname, telephone = :telephone, Email= :email, login = :login, password = :password 
 where EmployeeID = :employeeid";
 
 $statement = $conn -> prepare($sql);
@@ -37,7 +37,7 @@ $queryComplete = $statement->execute();
 
 else if (isset($_POST['delete'])) {
 	
-	$sql = "delete from employeetest 
+	$sql = "delete from employee 
 	where EmployeeID = :employeeid";
 	$statement = $conn -> prepare($sql);
 	

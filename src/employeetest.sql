@@ -8,7 +8,7 @@ CREATE TABLE `Employee` (
   `telephone` varchar(30) not null,
   `Email` varchar(150) DEFAULT NULL,
   `login` varchar(30) not null,
-  `password` varchar(30) not null,
+  `password` varchar(64) not null,
   PRIMARY KEY (`EmployeeID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

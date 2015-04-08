@@ -1,7 +1,7 @@
 <?php
 try {
     $hostname = "localhost";
-    $dbname = "customertest";
+    $dbname = "coffee";
     $username = "user";
     $pw = "root";
     $connstr = "mysql:host=$hostname;dbname=$dbname";

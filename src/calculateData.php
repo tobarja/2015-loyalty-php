@@ -7,12 +7,12 @@ $updatenum = $_POST['updatenum'];
 $customerid = $_POST['customerid'];
 
 
-if($conn->query("update customertest set Points = (Points + $updatenum) 
+if($conn->query("update customer set Points = (Points + $updatenum) 
 where CustomerID='$customerid';")== true){
 
 }
 
-$sql = "select points from customertest where CustomerID='$customerid';";
+$sql = "select points from customer where CustomerID='$customerid';";
 
 $result = $conn->query($sql);
 

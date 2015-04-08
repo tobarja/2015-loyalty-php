@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (isset($_SESSION["logged_in"]) && isset($_SESSION["admin_logged_in"]))
+if (isset($_SESSION["logged_in"]))
 {
 ?>
 <!DOCTYPE html>
@@ -9,15 +9,6 @@ if (isset($_SESSION["logged_in"]) && isset($_SESSION["admin_logged_in"]))
 <html>
 
 <head>
-
-<script>
-function checkForm(form){
-if(form.password.value != form.conpassword.value){
-alert("Error: passwords do not match");
-return false;
-}
-}
-</script>
 
 <title>MeanBean - Admin - Edit Customer</title>
 
@@ -80,14 +71,14 @@ return false;
 <br>
 <table>
 <?php
-$employeeid = $_GET["employeeid"];
-echo"<form onsubmit='return checkForm(this);' action='EmployeeEditAdmin.php"."?employeeid=".$employeeid."' method='post'>";
+$customerid = $_GET["customerid"];
+echo"<form action='CustomerEdit.php"."?customerid=".$customerid."' method='post'>";
 ?>
 <tr>
-<td style="border-bottom:1px solid black;font-size:20px;">Edit Employee</td>
+<td style="border-bottom:1px solid black;font-size:20px;">Edit Customer</td>
 <td style="border-bottom:1px solid black;"></td>
 </tr>
-<?php include 'EmployeeEditPopulate.php'; ?>
+<?php include 'CustomerEditPopulate.php'; ?>
 <tr>
 <td >First Name:</td>
 
@@ -106,23 +97,13 @@ echo"<form onsubmit='return checkForm(this);' action='EmployeeEditAdmin.php"."?e
 </tr>
 
 <tr>
-<td >Email</td>
+<td >E-mail:</td>
 <td ><input name="email" type="text" value="<?php echo $row['Email'] ?>" /></td>
 </tr>
 
 <tr>
-<td >Login:</td>
-<td ><input name="login" type="text" value="<?php echo $row['login'] ?>" /></td>
-</tr>
-
-<tr>
-<td >Password:</td>
-<td ><input name="password" type="password" value="" /></td>
-</tr>
-
-<tr>
-<td >Confirm Password:</td>
-<td ><input name="conpassword" type="password" value="" /></td>
+<td >Points:</td>
+<td ><input name="points" type="text" value="<?php echo $row['Points'] ?>" /></td>
 </tr>
 
 <tr>
@@ -139,8 +120,6 @@ echo"<form onsubmit='return checkForm(this);' action='EmployeeEditAdmin.php"."?e
 </body>
 
 </html>
-
-
 <?php
 }
 else{

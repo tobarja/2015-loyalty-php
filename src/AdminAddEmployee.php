@@ -65,7 +65,7 @@ if (isset($_SESSION["logged_in"]) && isset($_SESSION["admin_logged_in"]))
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="admin.php">Admin</a></li>
-        <li><a href="adminAddCustomer.php">New Customer</a></li>
+        <li><a href="AddCustomer.php">New Customer</a></li>
         <li><a href="custSearch.php">Search</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

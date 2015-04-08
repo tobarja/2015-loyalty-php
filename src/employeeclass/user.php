@@ -34,13 +34,13 @@
 		 
 		 try{
 			$hostname = "localhost";
-			$dbname = "customertest";
+			$dbname = "coffee";
 			$user = "user";
 			$pw = "root";
 			$connstr = "mysql:host=$hostname;dbname=$dbname";
 			$conn = new PDO($connstr,$user,$pw); 
 			$conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-			$sql = "SELECT * FROM employeetest WHERE login = :username AND password = :password LIMIT 1;";
+			$sql = "SELECT * FROM employee WHERE login = :username AND password = :password LIMIT 1;";
 			$stmt = $conn->prepare( $sql );
 			$stmt->bindValue( "username", $this->username, PDO::PARAM_STR );
 			$stmt->bindValue( "password", hash("sha256", $this->password . $this->salt), PDO::PARAM_STR );
@@ -70,13 +70,13 @@
 		$correct = false;
 			try {
 				$hostname = "localhost";
-				$dbname = "customertest";
+				$dbname = "coffee";
 				$user = "user";
 				$pw = "root";
 				$connstr = "mysql:host=$hostname;dbname=$dbname";
 				$conn = new PDO($connstr,$user,$pw); 
 				$conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-				$sql = "INSERT INTO employeetest
+				$sql = "INSERT INTO employee
 				(FirstName, LastName, telephone, Email, login, password) 
 				VALUES(:firstname, :lastname, :telephone, :email, :username, :password)";
 				

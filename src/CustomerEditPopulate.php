@@ -7,7 +7,7 @@ $customerid = $_GET['customerid'];
 
 
 
-$sql = "select FirstName, LastName, Points,  telephone, Email, Points from customertest where CustomerID = :customerid;";
+$sql = "select FirstName, LastName, Points,  telephone, Email, Points from customer where CustomerID = :customerid;";
 $statement = $conn -> prepare($sql);
 $statement -> bindValue(':customerid', $customerid);
 $queryComplete = $statement->execute();

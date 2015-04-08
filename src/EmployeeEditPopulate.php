@@ -7,7 +7,7 @@ $employeeid = $_GET['employeeid'];
 
 
 
-$sql = "select FirstName, LastName, telephone, Email, login, password from employeetest where EmployeeID = :employeeid;";
+$sql = "select FirstName, LastName, telephone, Email, login, password from employee where EmployeeID = :employeeid;";
 
 $statement = $conn -> prepare($sql);
 $statement -> bindValue(':employeeid', $employeeid);

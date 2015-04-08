@@ -4,15 +4,18 @@ include 'connection.php';
   
 
 $searchString = $_POST['searchString'];
+$searchString = "%".$searchString."%";
 
 
-$sql = "select CustomerID, FirstName, LastName, telephone, Points from customertest 
-where CONCAT(FirstName, ' ', LastName) like '%$searchString%' 
-or LastName like '%$searchString%' 
-or telephone like '$searchString%'";
+$sql = "select CustomerID, FirstName, LastName, telephone, Points from customer
+where CONCAT(FirstName, ' ', LastName) like :searchString 
+or LastName like :searchString 
+or telephone like :searchString";
 
 
 $statement = $conn -> prepare($sql);
+$statement -> bindValue(':searchString', $searchString,PDO::PARAM_STR);
+
 
 $queryComplete = $statement->execute();
 $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -30,7 +33,7 @@ if ($queryComplete){
 		.
 		"<td><a href='freebies.php?customerid=".$row['CustomerID']."'> Points: " . $row["Points"] . "</a></td>"
 		.
-		"<td><a href='AdminEditCustomer.php?customerid=".$row['CustomerID']."'>Edit</a></td></tr>";
+		"<td><a href='EditCustomer.php?customerid=".$row['CustomerID']."'>Edit</a></td></tr>";
     }
 	echo "</table>";
 } 

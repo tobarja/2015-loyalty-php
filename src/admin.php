@@ -44,7 +44,7 @@ if (isset($_SESSION["logged_in"]) && isset($_SESSION["admin_logged_in"]))
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="admin.php">Admin</a></li>
-        <li><a href="adminAddCustomer.php">New Customer</a></li>
+        <li><a href="AddCustomer.php">New Customer</a></li>
         <li><a href="custSearch.php">Search</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -65,7 +65,7 @@ if (isset($_SESSION["logged_in"]) && isset($_SESSION["admin_logged_in"]))
 <div id="formRow" style="height:300px;width:330px;margin-left:auto;margin-right:auto;">
 <div style="font-size:35px;font-weight:bold;margin-bottom:10px;border-bottom:1px solid silver;">Admin Dashboard</div>
 <div class="adminBox" style="float:left;width:50%;">
-<a href="adminAddCustomer.html"><input type="button" name="addCustomer" value="Add Customer" tabindex="1" style="font-size:20px;height:50px;margin-bottom:10px;width:180px;" /></a><br>
+<a href="AddCustomer.php"><input type="button" name="addCustomer" value="Add Customer" tabindex="1" style="font-size:20px;height:50px;margin-bottom:10px;width:180px;" /></a><br>
 <a href="adminAddEmployee.php"><input type="button" name="addEmployee" value="Add Employee" tabindex="3" style="font-size:20px;height:50px;margin-bottom:10px;width:180px;" /></a><br>
 <input type="button" name="accounting" value="Accounting" tabindex="5" style="font-size:20px;height:50px;margin-bottom:10px;width:180px;" /><br>
 </div>

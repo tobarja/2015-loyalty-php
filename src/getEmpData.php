@@ -4,12 +4,17 @@ include 'connection.php';
   
 
 $searchString = $_POST['searchString'];
+$searchString = "%".$searchString."%";
 
 
-$sql = "select EmployeeID, FirstName, LastName, telephone, Email, login, password from employeetest 
-where CONCAT(FirstName, ' ', LastName) like '%$searchString%'";
+$sql = "select EmployeeID, FirstName, LastName, telephone, Email, login, password from employee
+where CONCAT(FirstName, ' ', LastName) like :searchString 
+or LastName like :searchString";
+
 
 $statement = $conn -> prepare($sql);
+$statement -> bindValue(':searchString', $searchString,PDO::PARAM_STR);
+
 
 $queryComplete = $statement->execute();
 $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
