@@ -58,15 +58,13 @@ if (isset($_SESSION["logged_in"]) && isset($_SESSION["admin_logged_in"]))
 		var url = "getEmpData.php";
           var text = $("#search").val();
 		  
-		  if(text==""){}
-		  
-		  else{
+	
           $.post(url, {searchString: text}, function(data){
 		  
           	$("#result").html(data).show();
 
           });  //$.post close
-		  }
+		  
 	} //function close
 	 
 	}); //document ready close
