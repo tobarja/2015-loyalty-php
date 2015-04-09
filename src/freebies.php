@@ -3,6 +3,7 @@ session_start();
 
 if (isset($_SESSION["logged_in"]))
 {
+$username = $_SESSION["user_name"];
 ?>
 
 <!DOCTYPE html>
@@ -109,8 +110,12 @@ if (isset($_SESSION["logged_in"]))
 			<input type="button" value="9" class="numberButtons" style="margin:10px;width:75px;height:75px;"/>
 			<input type="button" value="Redeem" id="redeem" style="margin:10px;width:100px;height:75px;"/>
 			<br>
-               <input type="button" value="Clear" id="clear" style="margin:10px;width:75px;height:75px;"/>
+            <input type="button" value="Clear" id="clear" style="margin:10px;width:75px;height:75px;"/>
 			<input type="button" value="0" class="numberButtons" style="margin:10px;width:75px;height:75px;"/>
+			
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<input type="button" value="Undo Redeem" id="undoredeem" style="margin:10px;width:110px;padding-left:5px;height:75px;"/>
 		</div>
 </div>
 

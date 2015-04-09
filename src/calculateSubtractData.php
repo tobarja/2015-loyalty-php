@@ -1,8 +1,10 @@
 <?php
-
+$redeem=null;
+session_start();
 include 'connection.php';
   
-
+$username = $_SESSION["user_name"];
+$redeem = $_POST['redeem'];
 $updatenum = $_POST['updatenum'];
 $customerid = $_POST['customerid'];
 
@@ -14,6 +16,14 @@ $statement -> bindValue(':updatenum', $updatenum);
 $statement -> bindValue(':customerid', $customerid);
 
 $queryComplete = $statement->execute();
+
+if($redeem=="redeem"){
+$sql = "insert into redeemlog (user,point) values (:username,1);";
+$statement = $conn -> prepare($sql);
+$statement -> bindValue(':username', $username);
+$statement->execute();
+
+}
 
 if($queryComplete){
 

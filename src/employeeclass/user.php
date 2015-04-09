@@ -52,6 +52,7 @@
 				$success = true;
 				session_start();
 				$_SESSION["logged_in"] = true;
+				$_SESSION["user_name"] = $this->username;
 			}
 			
 			$conn = null;

@@ -1,11 +1,22 @@
 $(document).ready(function(){
-	
+	$("#undoredeem").click(function(){
+		var custid = $("#customerid").val();
+		var text = 10;
+		var redeemed = "redeem";
+		
+		$.post("calculateAddData.php", {updatenum: text, customerid: custid, redeem: redeemed}, function(data){
+		$("#systemPoints").html(data).show();
+		console.log(data);
+	}) //end post
+	}) //end function
+
+
 	$("#redeem").click(function(){
 		var custid = $("#customerid").val();
 		var text = 10;
+		var redeemed = "redeem";
 		
-		
-		$.post("calculateSubtractData.php", {updatenum: text, customerid: custid}, function(data){
+		$.post("calculateSubtractData.php", {updatenum: text, customerid: custid, redeem: redeemed}, function(data){
 		$("#systemPoints").html(data).show();
 		console.log(data);
 	}) //end post
@@ -81,9 +92,9 @@ $(document).ready(function(){
 		
 		var custid = $("#customerid").val();
 		var text = $("#customerPoints").text();
+		var redeemed = "not";
 		
-		
-		$.post("calculateAddData.php", {updatenum: text, customerid: custid}, function(data){
+		$.post("calculateAddData.php", {updatenum: text, customerid: custid, redeem: redeemed}, function(data){
 		$("#systemPoints").html(data).show();
 		console.log(data);
 		clearfunction();
@@ -142,9 +153,9 @@ $(document).ready(function(){
 		
 		var custid = $("#customerid").val();
 		var text = parseFloat($("#customerPoints").text());
+		var redeemed = "not";
 		
-		
-		$.post("calculateSubtractData.php", {updatenum: text, customerid: custid}, function(data){
+		$.post("calculateSubtractData.php", {updatenum: text, customerid: custid, redeem: redeemed}, function(data){
 		$("#systemPoints").html(data).show();
 		console.log(data);
 		clearfunction();

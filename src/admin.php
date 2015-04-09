@@ -67,7 +67,7 @@ if (isset($_SESSION["logged_in"]) && isset($_SESSION["admin_logged_in"]))
 <div class="adminBox" style="float:left;width:50%;">
 <a href="AddCustomer.php"><input type="button" name="addCustomer" value="Add Customer" tabindex="1" style="font-size:20px;height:50px;margin-bottom:10px;width:180px;" /></a><br>
 <a href="adminAddEmployee.php"><input type="button" name="addEmployee" value="Add Employee" tabindex="3" style="font-size:20px;height:50px;margin-bottom:10px;width:180px;" /></a><br>
-<input type="button" name="accounting" value="Accounting" tabindex="5" style="font-size:20px;height:50px;margin-bottom:10px;width:180px;" /><br>
+<a href="accounting.php"><input type="button" name="accounting" value="Accounting" tabindex="5" style="font-size:20px;height:50px;margin-bottom:10px;width:180px;" /></a><br>
 </div>
 
 <div class="adminBox" style ="float:left;width:50%;">
