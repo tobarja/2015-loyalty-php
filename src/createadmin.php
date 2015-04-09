@@ -7,7 +7,7 @@ $pw = "root";
 $connstr = "mysql:host=$hostname;dbname=$dbname";
 $conn = new PDO($connstr,$user,$pw); 
 $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
-$sql = "INSERT INTO admin
+$sql = "INSERT INTO employee
 (login, password) 
 VALUES(:username, :password)";
 $stmt = $conn->prepare( $sql );
