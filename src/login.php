@@ -73,7 +73,7 @@
 <form action="" method="post">
 <div id="formInput" style ="float:left;">
 <input type="text" name="username" tabindex="1" style="font-size:20px;height:50px;margin-bottom:10px;width:228px;" /><br>
-<input type="text" name="password" tabindex="2" style="font-size:20px;height:50px;margin-bottom:10px;width:228px;" /><br>
+<input type="password" name="password" tabindex="2" style="font-size:20px;height:50px;margin-bottom:10px;width:228px;" /><br>
 <input type="submit" name="login" value="Login" tabindex="5" style="font-size:20px;height:50px;padding:5px;" />
 </div>
 </form>

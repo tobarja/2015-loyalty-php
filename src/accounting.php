@@ -86,7 +86,9 @@ return false;
 <td style="border-bottom:1px solid black;font-size:20px;">Accounting Info</td>
 <td style="border-bottom:1px solid black;"></td>
 </tr>
-<tr><td><form action="deleteAccounting.php" method="post"><input type="submit" value="Delete All Entries" name="delete" /></form></td></tr>
+<tr><td><form action="deleteAccounting.php" method="post">
+<input type="submit" value="Delete All Entries" name="delete" onclick="return confirm('Are you sure you want to continue?')" />
+</form></td></tr>
 <?php include 'AccountingSum.php'; ?>
 
 <tr>
