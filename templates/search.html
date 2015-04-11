@@ -1,9 +1,3 @@
-<?php
-session_start();
-
-if (isset($_SESSION["logged_in"]))
-{
-?>
 <!DOCTYPE html>
 
 <html>
@@ -96,32 +90,10 @@ if (isset($_SESSION["logged_in"]))
 </nav>
 
 
+    <center><img src='bean.jpg' /></center>
+    <center><div>Start typing to find customers</div></center><br />
+    <center><input type='text' id='search' /><?= $_GET["firstname"]><?= $_GET["lastname"]></center>
 
-<?php 
-if (isset($_GET["firstname"]) && isset($_GET["lastname"]))
-    {
-        $firstname = $_GET["firstname"];
-        $lastname = $_GET["lastname"];
-    echo "<center><img src='bean.jpg' /></center>";
-    echo "<center><div>Start typing to find customers</div></center><br />";
-    echo "<center><input type='text' id='search' value='".$firstname.' '.$lastname."'></center>";
-    }
-else
-    {
-    echo "<center><img src='bean.jpg' /></center>";
-    echo "<center><div>Start typing to find customers</div></center><br />";
-    echo "<center><input type='text' id='search' /></center>";
-    }
-
-
-?>
     <div id="result"></div>
 </body>
 </html>
-
-<?php
-}
-else{
-    echo "You are not logged in.  Click the <a href='login.php'>login page</a> link.";
-}
-?>
