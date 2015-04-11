@@ -10,7 +10,7 @@ if (isset($_SESSION["logged_in"]))
 
 <head>
 
-	<title>MeanBean - Search</title>
+    <title>MeanBean - Search</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -21,8 +21,8 @@ if (isset($_SESSION["logged_in"]))
 
     <!-- jQuery library -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
-	
-	<script type="text/javascript" src="jquery-1.5.1.js"></script>
+
+    <script type="text/javascript" src="jquery-1.5.1.js"></script>
 
     <!-- Latest compiled JavaScript -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -31,48 +31,48 @@ if (isset($_SESSION["logged_in"]))
 
     table
     {
-	    margin-left:auto;
-	    margin-right:auto;
-	    border-collapse:collapse;
+        margin-left:auto;
+        margin-right:auto;
+        border-collapse:collapse;
     }
 
     td
     {
-	    text-align: right;
-	    padding: 5px;
+        text-align: right;
+        padding: 5px;
     }
 
     </style>
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
-	<script>
+    <script>
 
-	$(document).ready(function() {
-	
-	xx();
-	
-	$( "#search" ).keyup(xx);
-	
-	function xx () {
-		
-		var url = "getData.php";
+    $(document).ready(function() {
+
+    xx();
+
+    $( "#search" ).keyup(xx);
+
+    function xx () {
+
+        var url = "getData.php";
           var text = $("#search").val();
-		  
-		  if(text==""){}
-		  
-		  else{
+
+          if(text==""){}
+
+          else{
           $.post(url, {searchString: text}, function(data){
-		  
-          	$("#result").html(data).show();
+
+              $("#result").html(data).show();
 
           });  //$.post close
-		  }
-	} //function close
-	 
-	}); //document ready close
-	
-	</script>
+          }
+    } //function close
+
+    }); //document ready close
+
+    </script>
 
 </head>
 
@@ -99,21 +99,19 @@ if (isset($_SESSION["logged_in"]))
 
 <?php 
 if (isset($_GET["firstname"]) && isset($_GET["lastname"]))
-	{
-		$firstname = $_GET["firstname"];
-		$lastname = $_GET["lastname"];
-	
-	echo "<center><img src='bean.jpg' /></center>";
-	echo "<center><div>Start typing to find customers</div></center><br />";
-	echo "<center><input type='text' id='search' value='".$firstname.' '.$lastname."'></center>";
-	
-	}
+    {
+        $firstname = $_GET["firstname"];
+        $lastname = $_GET["lastname"];
+    echo "<center><img src='bean.jpg' /></center>";
+    echo "<center><div>Start typing to find customers</div></center><br />";
+    echo "<center><input type='text' id='search' value='".$firstname.' '.$lastname."'></center>";
+    }
 else
-	{
-	echo "<center><img src='bean.jpg' /></center>";
-	echo "<center><div>Start typing to find customers</div></center><br />";
-	echo "<center><input type='text' id='search' /></center>";
-	}
+    {
+    echo "<center><img src='bean.jpg' /></center>";
+    echo "<center><div>Start typing to find customers</div></center><br />";
+    echo "<center><input type='text' id='search' /></center>";
+    }
 
 
 ?>
@@ -124,7 +122,6 @@ else
 <?php
 }
 else{
-	
-	echo "You are not logged in.  Click the <a href='login.php'>login page</a> link.";
+    echo "You are not logged in.  Click the <a href='login.php'>login page</a> link.";
 }
 ?>
