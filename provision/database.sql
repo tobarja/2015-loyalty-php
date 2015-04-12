@@ -9,7 +9,7 @@ CREATE TABLE `Customers` (
   `Points` int(11) NOT NULL DEFAULT '0',
   `Email` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`CustomerID`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 INSERT INTO `Customers` VALUES (1,'Mario','Vickers','9105550001',10,'mario@example.com');
 INSERT INTO `Customers` VALUES (3,'Kevin','Brown','9105550003',0,NULL);
@@ -39,16 +39,3 @@ CREATE TABLE `RedeemLog` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 INSERT INTO `RedeemLog` VALUES (1,'2015-04-12 05:17:53','admin',1);
-DROP TABLE IF EXISTS `Users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Users` (
-  `UserID` int(11) NOT NULL AUTO_INCREMENT,
-  `UserName` varchar(50) NOT NULL,
-  `Password` varchar(50) NOT NULL,
-  `Admin` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`UserID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-INSERT INTO `Users` VALUES (1,'admin','123',1);
-INSERT INTO `Users` VALUES (2,'cashier','456',0);
