@@ -39,3 +39,14 @@ CREATE TABLE `RedeemLog` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 INSERT INTO `RedeemLog` VALUES (1,'2015-04-12 05:17:53','admin',1);
+
+DROP TABLE IF EXISTS `Users`;
+CREATE TABLE `Users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `UserName` varchar(50) NOT NULL,
+  `Password` varchar(100) NOT NULL,
+  `Admin` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `Users` VALUES (1,'admin','123',1);
+INSERT INTO `Users` VALUES (2,'cashier','456',0);
