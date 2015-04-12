@@ -104,7 +104,7 @@ EOT;
         $statement = $this->app->db->prepare($sql);
         $params = array('customerid' => $id);
         $queryComplete = $statement->execute($params);
-        foreach($statement as $row){}
+        $row = $statement->fetch();
         $this->app->render('customer-edit.html', array('id' => $id, 'Customer' => $row));
     }
 
