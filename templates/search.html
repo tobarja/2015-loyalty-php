@@ -23,18 +23,18 @@
 
     <style>
 
-    table
-    {
-        margin-left:auto;
-        margin-right:auto;
-        border-collapse:collapse;
-    }
+table
+{
+    margin-left:auto;
+    margin-right:auto;
+    border-collapse:collapse;
+}
 
-    td
-    {
-        text-align: right;
-        padding: 5px;
-    }
+td
+{
+    text-align: right;
+    padding: 5px;
+}
 
     </style>
 
@@ -42,57 +42,55 @@
 
     <script>
 
-    $(document).ready(function() {
+$(document).ready(function() {
 
-    xx();
+        xx();
 
-    $( "#search" ).keyup(xx);
+        $( "#search" ).keyup(xx);
 
-    function xx () {
+        function xx () {
 
         var url = "/search/getcustomers";
-          var text = $("#search").val();
+        var text = $("#search").val();
 
-          if(text==""){}
+        if(text==""){}
 
-          else{
-          $.post(url, {searchString: text}, function(data){
+        else{
+        $.post(url, {searchString: text}, function(data){
 
-              $("#result").html(data).show();
+            $("#result").html(data).show();
 
-          });  //$.post close
-          }
-    } //function close
+            });  //$.post close
+        }
+        } //function close
 
-    }); //document ready close
+}); //document ready close
 
     </script>
 
 </head>
 
 <body>
-<nav class="navbar navbar-inverse" style="margin-bottom:0px;">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="custSearch.php">MeanBean</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li><a href="admin.php">Admin</a></li>
-        <li><a href="AddCustomer.php">New Customer</a></li>
-        <li><a href="custSearch.php">Search</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
+    <nav class="navbar navbar-inverse" style="margin-bottom:0px;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/search">MeanBean</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="admin.php">Admin</a></li>
+                    <li><a href="/customers/add">New Customer</a></li>
+                    <li><a href="/search">Search</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="logout.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-
-    <center><img src='bean.jpg' /></center>
     <center><div>Start typing to find customers</div></center><br />
-    <center><input type='text' id='search' /><?= $_GET["firstname"]><?= $_GET["lastname"]></center>
+    <center><input type='text' id='search' value='{{ searchText }}'/></center>
 
     <div id="result"></div>
 </body>
