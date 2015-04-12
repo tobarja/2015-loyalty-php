@@ -33,14 +33,13 @@ class Customers {
             or LastName like :searchString or Telephone like :searchString LIMIT 10
 EOT;
 
-
         $statement = $this->app->db->prepare($sql);
         $params = array('searchString' => $searchString . '%');
 
         $statement->execute($params);
         if ($statement){
             foreach($statement as $row){
-                $freebieUrl = "freebies?customerid=" . $row['CustomerID'];
+                $freebieUrl = "/freebies/" . $row['CustomerID'];
                 echo "<table><tr>" .
                     "<td><a href='" . $freebieUrl . "'>" . $row["FirstName"] . " " . $row["LastName"] ."</a></td>" .
                     "<td><a href='" . $freebieUrl . "'>" . $row["Telephone"]. "</a></td>" .
