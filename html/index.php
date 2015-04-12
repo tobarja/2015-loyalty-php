@@ -14,5 +14,6 @@ $app->container->singleton('db', function () {
 });
 
 new \Loyalty\Controller\Customers($app);
+new \Loyalty\Controller\Freebies($app);
 
 $app->run();
