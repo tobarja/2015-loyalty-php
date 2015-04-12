@@ -41,7 +41,7 @@ class Freebies {
         $queryComplete = $statement->execute();
 
         if($redeem=="redeem"){
-            $sql = "insert into redeemlog (user,point) values (:username,-1);";
+            $sql = "insert into RedeemLog (User,Point) values (:username,-1);";
             $statement = $this->app->db->prepare($sql);
             $statement -> bindValue(':username', $username);
             $statement->execute();
@@ -83,7 +83,7 @@ class Freebies {
         $queryComplete = $statement->execute();
 
         if($redeem=="redeem"){
-            $sql = "insert into redeemlog (user,point) values (:username,1);";
+            $sql = "insert into RedeemLog (User,Point) values (:username,1);";
             $statement = $this->app->db->prepare($sql);
             $statement -> bindValue(':username', $username);
             $statement->execute();
