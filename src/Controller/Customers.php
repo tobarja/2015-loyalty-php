@@ -17,11 +17,13 @@ class Customers {
     }
 
     public function search() {
+        $this->app->requiresLogin;
         $searchText = $this->app->request->get('searchText');
         $this->app->render('search.html', array('searchText' => $searchText));
     }
 
     public function getCustomers() {
+        $this->app->requiresLogin;
         $searchString = $this->app->request->params('searchString');
         if (strlen($searchString) < 2) {
             return;
@@ -50,10 +52,12 @@ EOT;
     }
 
     public function add() {
+        $this->app->requiresLogin;
         $this->app->render('customer-add.html');
     }
 
     public function add_post() {
+        $this->app->requiresLogin;
         $firstname = $this->app->request->post('firstname');
         $lastname = $this->app->request->post('lastname');
         $telephone = $this->app->request->post('telephone');
@@ -98,6 +102,7 @@ EOT;
     }
 
     public function edit($id) {
+        $this->app->requiresLogin;
         $sql = "select FirstName, LastName, Points, Telephone, Email, Points from Customers " .
             " where CustomerID = :customerid;";
         $statement = $this->app->db->prepare($sql);
@@ -108,6 +113,7 @@ EOT;
     }
 
     public function edit_post($id) {
+        $this->app->requiresLogin;
         $firstname = $this->app->request->post('firstname');
         $lastname = $this->app->request->post('lastname');
         $telephone = $this->app->request->post('telephone');

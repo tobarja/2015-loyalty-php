@@ -14,6 +14,7 @@ class Accounting {
     }
 
     public function accounting() {
+        $this->app->requiresAdmin;
         $sql = "select sum(Point) as 'Points' from RedeemLog";
         $statement = $this->app->db->prepare($sql);
         $queryComplete = $statement->execute();
@@ -29,6 +30,7 @@ class Accounting {
     }
 
     public function deleteAll() {
+        $this->app->requiresAdmin;
         $sql = "delete from RedeemLog where 1=1";
         $statement = $this->app->db->prepare($sql);
         $queryComplete = $statement->execute();
