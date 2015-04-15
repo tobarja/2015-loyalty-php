@@ -16,6 +16,9 @@ $app->container->singleton('db', function () {
     return new \PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME, DB_USER, DB_PASS);
 });
 
+$app->get('/', function() use ($app){
+    $app->redirect('/login');
+});
 new \Loyalty\Controller\Auth($app);
 new \Loyalty\Controller\Accounting($app);
 new \Loyalty\Controller\Customers($app);
