@@ -7,7 +7,7 @@ $(document).ready(function(){
 		$.post("/freebies/calculateAdd", {updatenum: text, customerid: custid, redeem: redeemed}, function(data){
 		$("#systemPoints").html(data).show();
 		console.log(data);
-		$("#summary").text($("#summary").text()+"+10 (undo)");
+		$("#summary").html($("#summary").html()+"+10 (undo)<br/>");
 		
 	}) //end post
 	}) //end function
@@ -21,7 +21,7 @@ $(document).ready(function(){
 		$.post("/freebies/calculateSubtract", {updatenum: text, customerid: custid, redeem: redeemed}, function(data){
 		$("#systemPoints").html(data).show();
 		console.log(data);
-		$("#summary").text($("#summary").text()+"-10 (redeem)");
+		$("#summary").html($("#summary").html()+"-10 (redeem)<br/>");
 	}) //end post
 	}) //end function
 	
@@ -56,9 +56,6 @@ $(document).ready(function(){
 	
     $("#add").click(function()
     {
-		
-		
-	
         //  get current calculator display
         var currentDisplay = $("#calc_display").text();
 
@@ -92,7 +89,7 @@ $(document).ready(function(){
         //  set the calculator display to empty
         $("#calc_display").text("");
 		
-		$("#summary").text($("#summary").text()+"+"+points);
+		$("#summary").html($("#summary").html()+"+"+points+"<br/>");
 		var custid = $("#customerid").val();
 		var text = $("#customerPoints").text();
 		var redeemed = "not";
