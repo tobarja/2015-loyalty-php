@@ -8,8 +8,8 @@ class Freebies {
     public function __construct(&$app) {
         $this->app = $app;
         $app->get('/freebies/:id', array($this, 'freebies'));
-        $app->post('/freebies/calculateadd', array($this, 'calculateAdd'));
-        $app->post('/freebies/calculatesubtract', array($this, 'calculateSubtract'));
+        $app->post('/freebies/calculateAdd', array($this, 'calculateAdd'));
+        $app->post('/freebies/calculateSubtract', array($this, 'calculateSubtract'));
     }
 
     public function freebies($id) {

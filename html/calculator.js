@@ -3,11 +3,13 @@ $(document).ready(function(){
 		var custid = $("#customerid").val();
 		var text = 10;
 		var redeemed = "redeem";
-
-		$.post("/freebies/calculateadd", {updatenum: text, customerid: custid, redeem: redeemed}, function(data){
-			$("#systemPoints").html(data).show();
-			console.log(data);
-		}) //end post
+		
+		$.post("/freebies/calculateAdd", {updatenum: text, customerid: custid, redeem: redeemed}, function(data){
+		$("#systemPoints").html(data).show();
+		console.log(data);
+		$("#summary").text($("#summary").text()+"+10 (undo)");
+		
+	}) //end post
 	}) //end function
 
 
@@ -15,161 +17,166 @@ $(document).ready(function(){
 		var custid = $("#customerid").val();
 		var text = 10;
 		var redeemed = "redeem";
-
-		$.post("/freebies/calculatesubtract", {updatenum: text, customerid: custid, redeem: redeemed}, function(data){
-			$("#systemPoints").html(data).show();
-			console.log(data);
-		}) //end post
+		
+		$.post("/freebies/calculateSubtract", {updatenum: text, customerid: custid, redeem: redeemed}, function(data){
+		$("#systemPoints").html(data).show();
+		console.log(data);
+		$("#summary").text($("#summary").text()+"-10 (redeem)");
+	}) //end post
 	}) //end function
+	
+    $(".numberButtons").click(function()
+    {
+        //  get current calculator display
+        var currentDisplay = $("#calc_display").text();
 
-	$(".numberButtons").click(function()
-			{
-				//  get current calculator display
-				var currentDisplay = $("#calc_display").text();
+        //  new display
+        var newDisplay;
 
-				//  new display
-				var newDisplay;
+        //  set btnText = to the button value
+        var btnText = $(this).val();
 
-				//  set btnText = to the button value
-				var btnText = $(this).val();
+        //  if currentDisplay has no value
+        if (currentDisplay == 0)
+        {
+            //  set newDisplay = button value clicked
+            newDisplay = btnText;
+        }
+        //  if the display digits are < 2; add btnClick to display
+        else if (currentDisplay.length < 2)
+        {
+            //  add a second value to calc_display
+            newDisplay = currentDisplay + btnText;
+        }
 
-				//  if currentDisplay has no value
-				if (currentDisplay == 0)
-	{
-		//  set newDisplay = button value clicked
-		newDisplay = btnText;
-	}
-	//  if the display digits are < 2; add btnClick to display
-				else if (currentDisplay.length < 2)
-	{
-		//  add a second value to calc_display
-		newDisplay = currentDisplay + btnText;
-	}
+        //  set the calc_display = to the newDisplay
+        $("#calc_display").text(newDisplay);
 
-				//  set the calc_display = to the newDisplay
-				$("#calc_display").text(newDisplay);
+    });
+	
+    $("#add").click(function()
+    {
+		
+		
+	
+        //  get current calculator display
+        var currentDisplay = $("#calc_display").text();
 
-			});
+        //  if there is no value assign a 0
+        if (currentDisplay == "")
+        {
+            currentDisplay = 0;
+        }
 
-	$("#add").click(function()
-			{
+        //  convert calc_display to INT
+        currentDisplay = parseInt(currentDisplay);
 
+        //  get the current points
+        var oldPoints = $("#customerPoints").text();
 
+        //  had to set this to 0 to get around NAN if no value exists
+        if (oldPoints == "")
+        {
+            oldPoints = 0;
+        }
 
-				//  get current calculator display
-				var currentDisplay = $("#calc_display").text();
+        //  converst oldPoints to INT in case it isn't already
+        oldPoints = parseInt(oldPoints);
 
-				//  if there is no value assign a 0
-				if (currentDisplay == "")
-	{
-		currentDisplay = 0;
-	}
+        //  variable for new point display
+        var points = oldPoints + currentDisplay;
 
-	//  convert calc_display to INT
-	currentDisplay = parseInt(currentDisplay);
+        //  assign the points element the points value
+        $("#customerPoints").text(points);
 
-	//  get the current points
-	var oldPoints = $("#customerPoints").text();
-
-	//  had to set this to 0 to get around NAN if no value exists
-	if (oldPoints == "")
-	{
-		oldPoints = 0;
-	}
-
-	//  converst oldPoints to INT in case it isn't already
-	oldPoints = parseInt(oldPoints);
-
-	//  variable for new point display
-	var points = oldPoints + currentDisplay;
-
-	//  assign the points element the points value
-	$("#customerPoints").text(points);
-
-	//  set the calculator display to empty
-	$("#calc_display").text("");
-
-
-	var custid = $("#customerid").val();
-	var text = $("#customerPoints").text();
-	var redeemed = "not";
-
-	$.post("/freebies/calculateadd", {updatenum: text, customerid: custid, redeem: redeemed}, function(data){
+        //  set the calculator display to empty
+        $("#calc_display").text("");
+		
+		$("#summary").text($("#summary").text()+"+"+points);
+		var custid = $("#customerid").val();
+		var text = $("#customerPoints").text();
+		var redeemed = "not";
+		
+		$.post("/freebies/calculateAdd", {updatenum: text, customerid: custid, redeem: redeemed}, function(data){
 		$("#systemPoints").html(data).show();
 		console.log(data);
 		clearfunction();
-
-
-	});
-
-
-
-			});
-
-	function clearfunction(){
+		
+		
+		});
+		
+		
+		
+    });
+		
+		function clearfunction(){
 		var clearit = document.getElementById("customerPoints");
 		clearit.innerHTML="";
-	}
+		}
+		
+		
+    $("#minus").click(function()
+    {
+        //  get current calculator display
+        var currentDisplay = $("#calc_display").text();
 
+        //  if there is no value assign a 0
+        if (currentDisplay == "")
+        {
+            currentDisplay = 0;
+        }
 
-	$("#minus").click(function()
-			{
-				//  get current calculator display
-				var currentDisplay = $("#calc_display").text();
+        //  convert calc_display to INT
+        currentDisplay = parseInt(currentDisplay);
 
-				//  if there is no value assign a 0
-				if (currentDisplay == "")
-	{
-		currentDisplay = 0;
-	}
+        //  get the current points
+        var oldPoints = $("#customerPoints").text();
 
-	//  convert calc_display to INT
-	currentDisplay = parseInt(currentDisplay);
+        //  had to set this to 0 to get around NAN if no value exists
+        if (oldPoints == "")
+        {
+            oldPoints = 0;
+        }
 
-	//  get the current points
-	var oldPoints = $("#customerPoints").text();
+        //  converst oldPoints to INT in case it isn't already
+        oldPoints = parseInt(oldPoints);
+		
+		if (currentDisplay > parseInt($("#systemPoints").text()))
+        {
+            alert("You can't take away more points than the customer has.");
+        }
+		else{
+        
+            //  variable for new point display
+            var points = oldPoints + currentDisplay;
 
-	//  had to set this to 0 to get around NAN if no value exists
-	if (oldPoints == "")
-	{
-		oldPoints = 0;
-	}
+            //  assign the points element the points value
+            $("#customerPoints").text(points);
+        
 
-	//  converst oldPoints to INT in case it isn't already
-	oldPoints = parseInt(oldPoints);
-
-	//  if subtracting more points than you have
-
-	//  variable for new point display
-	var points = oldPoints + currentDisplay;
-
-	//  assign the points element the points value
-	$("#customerPoints").text(points);
-
-
-	//  set the calculator display to empty
-	$("#calc_display").text("");
-
-
-	var custid = $("#customerid").val();
-	var text = parseFloat($("#customerPoints").text());
-	var redeemed = "not";
-
-	$.post("/freebies/calculatesubtract", {updatenum: text, customerid: custid, redeem: redeemed}, function(data){
+        //  set the calculator display to empty
+        $("#calc_display").text("");
+		
+		$("#summary").text($("#summary").text()+"-"+points);
+		
+		var custid = $("#customerid").val();
+		var text = parseFloat($("#customerPoints").text());
+		var redeemed = "not";
+		
+		$.post("/freebies/calculateSubtract", {updatenum: text, customerid: custid, redeem: redeemed}, function(data){
 		$("#systemPoints").html(data).show();
 		console.log(data);
 		clearfunction();
+		});
+		}//end else
+		
+    })
 
-
-	});
-
-			})
-
-	$("#clear").click(function()
-			{
-				//  set calc_display = nothing
-				$("#calc_display").text("");
-				clearfunction();
-			});
+    $("#clear").click(function()
+    {
+        //  set calc_display = nothing
+        $("#calc_display").text("");
+		clearfunction();
+    });
 
 });
