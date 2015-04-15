@@ -43,9 +43,9 @@ DROP TABLE IF EXISTS `Users`;
 CREATE TABLE `Users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `UserName` varchar(50) NOT NULL,
-  `Password` varchar(100) NOT NULL,
+  `Password` varchar(255) NOT NULL,
   `Admin` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-INSERT INTO `Users` VALUES (1,'admin','123',1);
-INSERT INTO `Users` VALUES (2,'cashier','456',0);
+INSERT INTO `Users` VALUES (1,'admin','$2y$10$SRw6AG/iAVJO/WsAVVaQAuSWlaRiGumGi5VKyDEZOwgWsB4bT1vvK',1);
+INSERT INTO `Users` VALUES (2,'cashier','$2y$10$wLAQNbigEb2SOc5kLKWtlOPxP7V8f7S3KMPDWJqb1.CQg3GEfMH4i',0);

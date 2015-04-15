@@ -40,15 +40,15 @@ class Auth {
     public function login_post() {
         $username = $this->app->request->post('userName');
         $password = $this->app->request->post('password');
-        $pq = $this->app->db->prepare("select id, UserName, Admin from Users where UserName = :username and Password = :password");
-        $pq->execute(array('username' => $username, 'password' => $password));
+        $pq = $this->app->db->prepare("select id, UserName, Admin, Password from Users where UserName = :username");
+        $pq->execute(array('username' => $username));
         $row = $pq->fetch();
-        print_r($row);
         if ($row !== FALSE) {
-            $_SESSION['UserID'] = $row['id'];
-            $_SESSION['UserName'] = $row['UserName'];
-            $_SESSION['Admin'] = $row['Admin'];
-            //$this->app->response->redirect('/search');
+            if (password_verify($password, $row['Password'])) {
+                $_SESSION['UserID'] = $row['id'];
+                $_SESSION['UserName'] = $row['UserName'];
+                $_SESSION['Admin'] = $row['Admin'];
+            }
         }
         $this->app->response->redirect('/login');
     }
