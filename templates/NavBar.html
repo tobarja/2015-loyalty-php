@@ -1,30 +1,28 @@
-<!DOCTYPE html>
-
-<html>
-	<head>
-		<body>
-			<nav class="navbar navbar-inverse">
-		  		<div class="container-fluid">
-		    		<div class="navbar-header">
-		    	  		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-		    	    		<span class="icon-bar"></span>
-		    	    		<span class="icon-bar"></span>
-		    	    		<span class="icon-bar"></span>
-		    	  		</button>
-		    	  		<a class="navbar-brand" href="index.php">MeanBean</a>
-		    		</div>
-		    		<div class="collapse navbar-collapse" id="myNavbar">
-		    	  		<ul class="nav navbar-nav">
-		    	    		<li><a href="admin.php">Admin</a></li>
-   				    		<li><a href="/customers/add">New Customer</a></li>
-   							<li><a href="/search">Search</a></li>
-   				  		</ul>
-   				  		<ul class="nav navbar-nav navbar-right">
-   				    		<li><a href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-						</ul>
-					</div>
-				</div>
-			</nav>
-		</body>
-	</head>
-</html>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">MeanBean</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                {% if session.UserID > 0 %}
+                <li><a href="/accounting">Accounting</a></li>
+                <li><a href="/customers/add">New Customer</a></li>
+                <li><a href="/search">Search</a></li>
+                {% endif %}
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                {% if session.UserID > 0 %}
+                <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
+                {% else %}
+                <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

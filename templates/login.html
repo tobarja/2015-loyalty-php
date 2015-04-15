@@ -26,27 +26,7 @@
 
     <!-- Navigation Bar -->
 
-    <nav class="navbar navbar-inverse">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="freebies.php">MeanBean</a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                    <li><a href="admin.php">Admin</a></li>
-                    <li><a href="new.php">New Customer</a></li>
-                    <li><a href="search.php">Search</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    {% if session.UserID > 0 %}
-                    <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
-                    {% else %}
-                    <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
-                    {% endif %}
-                </ul>
-            </div>
-        </div>
-    </nav>
+    {% include 'NavBar.html' %}
 
     <!-- End Navigation Bar -->
 
