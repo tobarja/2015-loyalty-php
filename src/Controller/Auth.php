@@ -9,10 +9,29 @@ class Auth {
         $app->get('/login', array($this, 'login'))->name('login');
         $app->post('/login', array($this, 'login_post'))->name('login');
         $app->get('/logout', array($this, 'logout'))->name('logout');
+
+        $app->isLoggedIn = function () {
+            return $this->isLoggedIn();
+        };
+        $app->isAdmin = function () {
+            return $this->isAdmin();
+        };
+
+        $app->requiresLogin = function () {
+            if (!$this->isLoggedIn()) {
+                $this->app->redirect('/login');
+            };
+        };
+        $app->requiresAdmin = function () {
+            if (!$this->isAdmin()) {
+                $this->logout();
+            };
+        };
+
     }
 
     public function login() {
-        if ($this->IsLoggedIn()) {
+        if ($this->isLoggedIn()) {
             $this->app->response->redirect('/search');
         }
         $this->app->render('login.html');
@@ -34,11 +53,11 @@ class Auth {
         $this->app->response->redirect('/login');
     }
 
-    public function IsLoggedIn() {
+    private function isLoggedIn() {
         return (array_key_exists('UserID', $_SESSION));
     }
 
-    public function IsAdmin() {
+    private function isAdmin() {
         if (array_key_exists('Admin', $_SESSION)) {
             if ($_SESSION['Admin'] == 1) {
                 return true;

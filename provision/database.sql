@@ -26,7 +26,6 @@ INSERT INTO `Customers` VALUES (14,'Doug','Stolk','9105550014',11,'doug.stolk@ex
 INSERT INTO `Customers` VALUES (15,'Patricia','Downey','9105550015',0,'PATRICIA@example.com');
 INSERT INTO `Customers` VALUES (16,'Wendy','Anglehart','9105550016',80,'anglehart@example.com');
 INSERT INTO `Customers` VALUES (17,'Francis','Hogue','9105550017',0,'fh@example.com');
-INSERT INTO `Customers` VALUES (18,'Andrew','Thompson','9108174181',9,'andrew@tobarja.com');
 DROP TABLE IF EXISTS `RedeemLog`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
