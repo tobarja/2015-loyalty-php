@@ -9,8 +9,6 @@ class Accounting {
         $this->app = $app;
         $app->get('/accounting', array($this, 'accounting'));
         $app->post('/accounting/deleteAll', array($this, 'deleteAll'));
-        //$app->post('/freebies/calculateadd', array($this, 'calculateAdd'));
-        //$app->post('/freebies/calculatesubtract', array($this, 'calculateSubtract'));
     }
 
     public function accounting() {
