@@ -73,7 +73,7 @@ EOT;
         //$points = mysql_real_escape_string($points);
         //$email = mysql_real_escape_string($email);
 
-        $sql = "insert into Customers (Firstame, LastName, Points, Telephone, Email)" .
+        $sql = "insert into Customers (FirstName, LastName, Points, Telephone, Email)" .
             "values (:fname, :lname, :points, :telephone, :email)";
         $statement = $this->app->db->prepare($sql);
 

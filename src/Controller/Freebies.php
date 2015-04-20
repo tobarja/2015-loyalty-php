@@ -20,6 +20,9 @@ class Freebies {
         $params = array('customerid' => $id);
         $queryComplete = $statement->execute($params);
         $row = $statement->fetch();
+        if ($row == FALSE) {
+            $this->app->redirect('/search');
+        }
         $this->app->render('freebies.html', array('id' => $id, 'Customer' => $row));
     }
 
