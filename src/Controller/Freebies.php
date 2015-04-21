@@ -13,21 +13,24 @@ class Freebies {
     }
 
     public function freebies($id) {
+        $this->app->requiresLogin;
         $sql = "select FirstName, LastName, Points, Telephone, Email, Points from Customers " .
             "where CustomerID = :customerid;";
         $statement = $this->app->db->prepare($sql);
         $params = array('customerid' => $id);
         $queryComplete = $statement->execute($params);
         $row = $statement->fetch();
+        if ($row == FALSE) {
+            $this->app->redirect('/search');
+        }
         $this->app->render('freebies.html', array('id' => $id, 'Customer' => $row));
     }
 
     public function calculateAdd() {
+        $this->app->requiresLogin;
         $redeem=null;
-        session_start();
 
-        //$username = $_SESSION["user_name"];
-        $username = "admin"; // Auth is broken right now
+        $username = $_SESSION["UserName"];
         $redeem = $_POST['redeem'];
         $updatenum = $_POST['updatenum'];
         $customerid = $_POST['customerid'];
@@ -65,11 +68,10 @@ class Freebies {
 
 
     public function calculateSubtract() {
+        $this->app->requiresLogin;
         $redeem=null;
-        session_start();
 
-        //$username = $_SESSION["user_name"];
-        $username = "admin"; // Auth is broken right now
+        $username = $_SESSION["UserName"];
         $redeem = $_POST['redeem'];
         $updatenum = $_POST['updatenum'];
         $customerid = $_POST['customerid'];

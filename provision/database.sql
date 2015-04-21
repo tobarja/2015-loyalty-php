@@ -26,7 +26,6 @@ INSERT INTO `Customers` VALUES (14,'Doug','Stolk','9105550014',11,'doug.stolk@ex
 INSERT INTO `Customers` VALUES (15,'Patricia','Downey','9105550015',0,'PATRICIA@example.com');
 INSERT INTO `Customers` VALUES (16,'Wendy','Anglehart','9105550016',80,'anglehart@example.com');
 INSERT INTO `Customers` VALUES (17,'Francis','Hogue','9105550017',0,'fh@example.com');
-INSERT INTO `Customers` VALUES (18,'Andrew','Thompson','9108174181',9,'andrew@tobarja.com');
 DROP TABLE IF EXISTS `RedeemLog`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -39,3 +38,14 @@ CREATE TABLE `RedeemLog` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 INSERT INTO `RedeemLog` VALUES (1,'2015-04-12 05:17:53','admin',1);
+
+DROP TABLE IF EXISTS `Users`;
+CREATE TABLE `Users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `UserName` varchar(50) NOT NULL,
+  `Password` varchar(255) NOT NULL,
+  `Admin` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `Users` VALUES (1,'admin','$2y$10$SRw6AG/iAVJO/WsAVVaQAuSWlaRiGumGi5VKyDEZOwgWsB4bT1vvK',1);
+INSERT INTO `Users` VALUES (2,'cashier','$2y$10$wLAQNbigEb2SOc5kLKWtlOPxP7V8f7S3KMPDWJqb1.CQg3GEfMH4i',0);

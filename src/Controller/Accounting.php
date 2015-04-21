@@ -9,11 +9,10 @@ class Accounting {
         $this->app = $app;
         $app->get('/accounting', array($this, 'accounting'));
         $app->post('/accounting/deleteAll', array($this, 'deleteAll'));
-        //$app->post('/freebies/calculateadd', array($this, 'calculateAdd'));
-        //$app->post('/freebies/calculatesubtract', array($this, 'calculateSubtract'));
     }
 
     public function accounting() {
+        $this->app->requiresAdmin;
         $sql = "select sum(Point) as 'Points' from RedeemLog";
         $statement = $this->app->db->prepare($sql);
         $queryComplete = $statement->execute();
@@ -29,6 +28,7 @@ class Accounting {
     }
 
     public function deleteAll() {
+        $this->app->requiresAdmin;
         $sql = "delete from RedeemLog where 1=1";
         $statement = $this->app->db->prepare($sql);
         $queryComplete = $statement->execute();
