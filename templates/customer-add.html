@@ -56,32 +56,32 @@ td
         <form action="" method="post">
             <tr>
                 <td >First Name:</td>
-                <td ><input name="firstname" type="text" /></td>
+                <td ><input name="firstname" type="text" value="{{ Customer.FirstName }}" /></td>
             </tr>
 
             <tr>
                 <td >Last Name:</td>
-                <td ><input name="lastname" type="text" /></td>
+                <td ><input name="lastname" type="text" value="{{ Customer.LastName }}" /></td>
             </tr>
 
             <tr>
                 <td >Telephone:</td>
-                <td ><input name="telephone" type="text" /></td>
+                <td ><input name="telephone" type="text" value="{{ Customer.Telephone }}" /></td>
             </tr>
 
             <tr>
                 <td >E-mail:</td>
-                <td ><input name="email" type="text" /></td>
+                <td ><input name="email" type="text" value="{{ Customer.Email }}" /></td>
             </tr>
 
             <tr>
                 <td >Points:</td>
-                <td ><input name="points" type="text" /></td>
+                <td ><input name="points" type="text" value="{{ Customer.Points }}" /></td>
             </tr>
 
             <tr>
                 <td></td>
-                <td><input type="submit" /></td>
+                <td><input type="submit" value="Add" /></td>
             </tr>
 
         </table>
