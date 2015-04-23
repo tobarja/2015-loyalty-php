@@ -42,7 +42,7 @@ td
 
     <!-- Navigation Bar -->
 
-	{% include 'NavBar.html' %}
+    {% include 'NavBar.html' %}
 
     <!-- End Navigation Bar -->
 
@@ -50,38 +50,56 @@ td
     <table>
 
         <tr>
-            <td style="border-bottom:1px solid black;font-size:20px;">Add Customer</td>
-            <td style="border-bottom:1px solid black;"></td>
+            <td colspan="2" style="border-bottom:1px solid black;font-size:20px;">Add Customer</td>
+            <td>&nbsp;</td>
         </tr>
         <form action="" method="post">
             <tr>
                 <td >First Name:</td>
                 <td ><input name="firstname" type="text" value="{{ Customer.FirstName }}" /></td>
+                <td>
+                    {%  if Customer.posted == true %}
+                    {%  if Customer.FirstName|length == 0 %}<span style="color:red;">*</span>{% endif %}
+                    {% endif %}
+                </td>
             </tr>
 
             <tr>
                 <td >Last Name:</td>
                 <td ><input name="lastname" type="text" value="{{ Customer.LastName }}" /></td>
+                <td>
+                    {%  if Customer.posted == true %}
+                    {%  if Customer.LastName|length == 0 %}<span style="color:red;">*</span>{% endif %}
+                    {% endif %}
+                </td>
             </tr>
 
             <tr>
                 <td >Telephone:</td>
                 <td ><input name="telephone" type="text" value="{{ Customer.Telephone }}" /></td>
+                <td>
+                    {%  if Customer.posted == true %}
+                    {%  if Customer.Telephone|length == 0 %}<span style="color:red;">*</span>{% endif %}
+                    {% endif %}
+                </td>
             </tr>
 
             <tr>
                 <td >E-mail:</td>
                 <td ><input name="email" type="text" value="{{ Customer.Email }}" /></td>
+                <td>&nbsp;</td>
             </tr>
 
             <tr>
                 <td >Points:</td>
                 <td ><input name="points" type="text" value="{{ Customer.Points }}" /></td>
+                <td>&nbsp;</td>
             </tr>
 
             <tr>
                 <td></td>
                 <td><input type="submit" value="Add" /></td>
+                <td>&nbsp;</td>
             </tr>
 
         </table>

@@ -70,7 +70,8 @@ EOT;
             'LastName' => $lastname,
             'Telephone' => $telephone,
             'Points' => $points,
-            'Email' => $email);
+            'Email' => $email,
+            'posted' => true);
 
         if ($this->IsNullOrEmptyString($firstname) ||
             $this->IsNullOrEmptyString($lastname) ||
@@ -126,11 +127,19 @@ EOT;
         $points = $this->app->request->post('points');
         $email = $this->app->request->post('email');
 
-        //$firstname = mysql_real_escape_string($firstname);
-        //$lastname = mysql_real_escape_string($lastname);
-        //$telephone = mysql_real_escape_string($telephone);
-        //$points = mysql_real_escape_string($points);
-        //$email = mysql_real_escape_string($email);
+        $databag = array('FirstName' => $firstname,
+            'LastName' => $lastname,
+            'Telephone' => $telephone,
+            'Points' => $points,
+            'Email' => $email,
+            'posted' => true);
+
+        if ($this->IsNullOrEmptyString($firstname) ||
+            $this->IsNullOrEmptyString($lastname) ||
+            $this->IsNullOrEmptyString($telephone)) {
+            $this->app->render('customer-edit.html', array('id' => $id, 'Customer' => $databag));
+            $this->app->stop();
+        }
 
         if (isset($_POST['save'])) {
 
