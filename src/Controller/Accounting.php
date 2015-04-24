@@ -8,6 +8,7 @@ class Accounting {
     public function __construct(&$app) {
         $this->app = $app;
         $app->get('/accounting', array($this, 'accounting'));
+        $app->get('/accounting/view/:year/:month', array($this, 'view'));
         $app->post('/accounting/deleteAll', array($this, 'deleteAll'));
     }
 
@@ -18,13 +19,23 @@ class Accounting {
         $queryComplete = $statement->execute();
         $totalrow = $statement->fetch(\PDO::FETCH_ASSOC);
 
-        $sql = "select Time,User,Point from RedeemLog;";
+        $sql = "select year(Time) as Year, month(Time) as Month from RedeemLog group by year(Time), month(Time);";
         $statement = $this->app->db->prepare($sql);
         $queryComplete = $statement->execute();
         $rows = $statement->fetchAll(\PDO::FETCH_ASSOC);
 
         $this->app->render('accounting.html', array('totalPointsFromRedeemLog' => $totalrow['Points'],
             'redeemlog' => $rows));
+    }
+
+    public function view($year, $month) {
+        $this->app->requiresAdmin;
+        $sql = "select Time,User,Point from RedeemLog where month(Time) = :Month and year(Time) = :Year;";
+        $statement = $this->app->db->prepare($sql);
+        $queryComplete = $statement->execute(array('Year' => $year, 'Month' => $month));
+        $rows = $statement->fetchAll(\PDO::FETCH_ASSOC);
+
+        $this->app->render('accounting-view.html', array('data' => $rows));
     }
 
     public function deleteAll() {

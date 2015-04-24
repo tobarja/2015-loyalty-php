@@ -47,27 +47,17 @@ td
     <!-- End Navigation Bar -->
 
     <br>
-    <table>
+    <table border="1">
         <tr>
-            <td style="border-bottom:1px solid black;font-size:20px;">Accounting Info</td>
-            <td style="border-bottom:1px solid black;"></td>
+            <td>Date/Time:</td>
+            <td>User:</td>
+            <td>Redeemed</td>
         </tr>
-        <tr><td><form action="/accounting/deleteAll" method="post">
-                    <input type="submit" value="Delete All Entries" name="delete" onclick="return confirm('Are you sure you want to continue?')" />
-        </form></td></tr>
-
+        {% for row in data %}
         <tr>
-            <td >Total Points Redeemed in System:</td>
-            <td >{{ totalPointsFromRedeemLog }}</td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <th>Months Viewable:</th>
-        </tr>
-        {% for row in redeemlog %}
-        <tr>
-            <td><a href="/accounting/view/{{ row.Year }}/{{ row.Month }}">{{ row.Year }}/{{ row.Month }}</a></td>
+            <td>{{ row.Time }}</td>
+            <td>{{ row.User }}</td>
+            <td>{{ row.Point }}</td>
         </tr>
         {% endfor %}
 
