@@ -66,12 +66,19 @@ EOT;
 
         $telephone = preg_replace("/[^0-9]/", "", $telephone); //remove any non-digit chars
 
-        //TODO mysql_real_escape_string would not work for me
-        //$firstname = mysql_real_escape_string($firstname);
-        //$lastname = mysql_real_escape_string($lastname);
-        //$telephone = mysql_real_escape_string($telephone);
-        //$points = mysql_real_escape_string($points);
-        //$email = mysql_real_escape_string($email);
+        $databag = array('FirstName' => $firstname,
+            'LastName' => $lastname,
+            'Telephone' => $telephone,
+            'Points' => $points,
+            'Email' => $email,
+            'posted' => true);
+
+        if ($this->IsNullOrEmptyString($firstname) ||
+            $this->IsNullOrEmptyString($lastname) ||
+            $this->IsNullOrEmptyString($telephone)) {
+            $this->app->render('customer-add.html', array('Customer' => $databag));
+            $this->app->stop();
+        }
 
         $sql = "insert into Customers (FirstName, LastName, Points, Telephone, Email)" .
             "values (:fname, :lname, :points, :telephone, :email)";
@@ -120,11 +127,19 @@ EOT;
         $points = $this->app->request->post('points');
         $email = $this->app->request->post('email');
 
-        //$firstname = mysql_real_escape_string($firstname);
-        //$lastname = mysql_real_escape_string($lastname);
-        //$telephone = mysql_real_escape_string($telephone);
-        //$points = mysql_real_escape_string($points);
-        //$email = mysql_real_escape_string($email);
+        $databag = array('FirstName' => $firstname,
+            'LastName' => $lastname,
+            'Telephone' => $telephone,
+            'Points' => $points,
+            'Email' => $email,
+            'posted' => true);
+
+        if ($this->IsNullOrEmptyString($firstname) ||
+            $this->IsNullOrEmptyString($lastname) ||
+            $this->IsNullOrEmptyString($telephone)) {
+            $this->app->render('customer-edit.html', array('id' => $id, 'Customer' => $databag));
+            $this->app->stop();
+        }
 
         if (isset($_POST['save'])) {
 
@@ -162,5 +177,9 @@ EOT;
             echo "Error: " .$sql. "<br>" . "PDO::errorInfo():\n";
             print_r($statement->errorInfo());
         }
+    }
+
+    public function IsNullOrEmptyString($question){
+        return (!isset($question) || trim($question)==='');
     }
 }
