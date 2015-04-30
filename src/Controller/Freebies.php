@@ -35,7 +35,7 @@ class Freebies {
         $updatenum = $_POST['updatenum'];
         $customerid = $_POST['customerid'];
 
-        $sql = "update Customers set Points = (Points + :updatenum) where CustomerID=:customerid;";
+        $sql = "update Customers set Points = (Points + :updatenum), LastActive = CURRENT_TIMESTAMP where CustomerID=:customerid;";
         $statement = $this->app->db->prepare($sql);
 
         $statement -> bindValue(':updatenum', $updatenum);
@@ -76,7 +76,7 @@ class Freebies {
         $updatenum = $_POST['updatenum'];
         $customerid = $_POST['customerid'];
 
-        $sql = "update Customers set Points = (Points - :updatenum) where CustomerID=:customerid;";
+        $sql = "update Customers set Points = (Points - :updatenum), LastActive = CURRENT_TIMESTAMP where CustomerID=:customerid;";
         $statement = $this->app->db->prepare($sql);
 
         $statement -> bindValue(':updatenum', $updatenum);
