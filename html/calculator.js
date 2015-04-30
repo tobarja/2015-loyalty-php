@@ -1,3 +1,5 @@
+// updated add, minus, redeem, redeem-keypress, clearAll, freebies.html-clearAll, undoRedeem
+
 $(document).ready(function(){
 	$("#undoredeem").click(function(){
 		var custid = $("#customerid").val();
@@ -8,23 +10,37 @@ $(document).ready(function(){
 		$("#systemPoints").html(data).show();
 		console.log(data);
 		$("#summary").html($("#summary").html()+"+10 (undo)<br/>");
-		
 	}) //end post
 	}) //end function
-
 
 	$("#redeem").click(function(){
 		var custid = $("#customerid").val();
 		var text = 10;
 		var redeemed = "redeem";
-		
-		$.post("/freebies/calculateSubtract", {updatenum: text, customerid: custid, redeem: redeemed}, function(data){
-		$("#systemPoints").html(data).show();
-		console.log(data);
-		$("#summary").html($("#summary").html()+"-10 (redeem)<br/>");
-	}) //end post
+
+     	if( parseInt($("#systemPoints").text()) > 9 )
+		{
+			$.post("/freebies/calculateSubtract", {updatenum: text, customerid: custid, redeem: redeemed}, function(data){
+			$("#systemPoints").html(data).show();
+			console.log(data);
+			$("#summary").html($("#summary").html()+"-10 (redeem)<br/>");
+
+			}) //end post
+		}
+		else
+		{
+               alert("You need at least 10 points to redeem");
+		}
 	}) //end function
-	
+
+	//	eliminates the enter button from being held down and points going negative
+	$('#redeem').keypress(function(event){
+	    if (event.keyCode == 10 || event.keyCode == 13)
+	      {
+           	event.preventDefault();
+	      }
+  	});
+
     $(".numberButtons").click(function()
     {
         //  get current calculator display
@@ -85,15 +101,21 @@ $(document).ready(function(){
 
         //  set the calculator display to empty
         $("#calc_display").text("");
-		
-		$("#summary").html($("#summary").html()+"+"+points+"<br/>");
-		var custid = $("#customerid").val();
-		var redeemed = "not";
-		
-		$.post("/freebies/calculateAdd", {updatenum: currentDisplay, customerid: custid, redeem: redeemed}, function(data){
-		$("#systemPoints").html(data).show();
-		console.log(data);
-		});
+
+        if ( currentDisplay > 0 )
+          {
+
+			$("#summary").html($("#summary").html()+"+"+points+"<br/>");
+			var custid = $("#customerid").val();
+			var redeemed = "not";
+
+			$.post("/freebies/calculateAdd", {updatenum: currentDisplay, customerid: custid, redeem: redeemed}, function(data){
+			$("#systemPoints").html(data).show();
+			console.log(data);
+			});
+
+          }
+
     });
 		
     $("#minus").click(function()
@@ -121,7 +143,7 @@ $(document).ready(function(){
 
         //  converst oldPoints to INT in case it isn't already
         oldPoints = parseInt(oldPoints);
-		
+
 		if (currentDisplay > parseInt($("#systemPoints").text()))
         {
             alert("You can't take away more points than the customer has.");
@@ -133,18 +155,20 @@ $(document).ready(function(){
 
         //  set the calculator display to empty
         $("#calc_display").text("");
-		
-		$("#summary").html($("#summary").html()+"-"+points+"<br/>");
-		
-		var custid = $("#customerid").val();
-		var redeemed = "not";
-		
-		$.post("/freebies/calculateSubtract", {updatenum: currentDisplay, customerid: custid, redeem: redeemed}, function(data){
-		$("#systemPoints").html(data).show();
-		console.log(data);
-		});
+
+		if ( currentDisplay > 0)
+		{
+			$("#summary").html($("#summary").html()+"-"+points+"<br/>");
+
+			var custid = $("#customerid").val();
+			var redeemed = "not";
+
+			$.post("/freebies/calculateSubtract", {updatenum: currentDisplay, customerid: custid, redeem: redeemed}, function(data){
+			$("#systemPoints").html(data).show();
+			console.log(data);
+			});
+		}
 		}//end else
-		
     })
 
     $("#clear").click(function()
@@ -153,4 +177,9 @@ $(document).ready(function(){
         $("#calc_display").text("");
     });
 
+    $("#clearAll").click(function()
+    {
+    		$("#calc_display").text("");
+		$("#summary").html("");
+    });
 });
