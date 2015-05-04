@@ -1,5 +1,4 @@
 <?php
-
 namespace Loyalty\Datalayer;
 
 class CustomerRepository {

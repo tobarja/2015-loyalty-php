@@ -1,5 +1,4 @@
 <?php
-
 namespace Loyalty\Model;
 
 class RedeemLog {
@@ -10,7 +9,6 @@ class RedeemLog {
     var $Point;
 
     public function __construct($User, $Point) {
-        $this->Time = $Time;
         $this->User = $User;
         $this->Point = $Point;
     }
