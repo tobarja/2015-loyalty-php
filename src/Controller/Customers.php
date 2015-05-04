@@ -29,22 +29,15 @@ class Customers {
             return;
         }
 
-        $sql = <<<EOT
-            select CustomerID, FirstName, LastName, Telephone, Points from Customers
-            where CONCAT(FirstName, ' ', LastName) like :searchString 
-            or LastName like :searchString or Telephone like :searchString LIMIT 10
-EOT;
+        $CustomerRepository = new \Loyalty\Datalayer\CustomerRepository($this->app->db);
+        $results = $CustomerRepository->RawFuzzySearch($searchString);
 
-        $statement = $this->app->db->prepare($sql);
-        $params = array('searchString' => $searchString . '%');
-
-        $statement->execute($params);
-        if ($statement){
+        if ($results){
             echo "<br>";
             echo "<div style='width:60%;margin-right:auto;margin-left:auto;'>";
             $counter = 0;
             $bgcolor = array("#D8D8D8", "#848484");
-            foreach($statement as $row){
+            foreach($results as $row){
                 $counter++;
                 $telephone = substr($row["Telephone"],0,3) . '-' . substr($row["Telephone"],3,3) . '-' . substr($row["Telephone"], 6);
                 $freebieUrl = "/freebies/" . $row['CustomerID'];
@@ -90,43 +83,24 @@ EOT;
             $this->app->stop();
         }
 
-        $sql = "insert into Customers (FirstName, LastName, Points, Telephone, Email)" .
-            "values (:fname, :lname, :points, :telephone, :email)";
-        $statement = $this->app->db->prepare($sql);
+        $Customer = new \Loyalty\Model\Customer($firstname, $lastname, $telephone, $email, $points);
+        $CustomerRepository = new \Loyalty\Datalayer\CustomerRepository($this->app->db);
 
-        $params = array( 'fname' => $firstname,
-            'lname' => $lastname,
-            'points' => $points,
-            'telephone' => $telephone,
-            'email' => $email);
-
-        $queryComplete = $statement->execute($params);
+        $queryComplete = $CustomerRepository->Save($Customer);
 
         if ($queryComplete){
-            echo "<h1>Success</h1>" .
-                "<p>You have added a customer to the database, their name is $firstname $lastname, " .
-                "with $points points, and number $telephone, with email $email</p>";
+            $this->app->redirect("/search?searchText=$firstname $lastname");
         } else {
-            echo "<h1>Error:</h1>" .
-                "<h2>SQL statement:</h2>" .
-                "<pre>" .$sql. "</pre>" .
-                "<h2>PDO::errorInfo():</h2>" .
-                "<pre>";
-            print_r($statement->errorInfo());
-            echo "</pre>";
+            $this->app->render('customer-add.html', array('Customer' => $databag));
+            $this->app->stop();
         }
-        echo "<h2>Back to <a href='/customers/add'>Add Customer</a>";
     }
 
     public function edit($id) {
         $this->app->requiresLogin;
-        $sql = "select FirstName, LastName, Points, Telephone, Email, Points from Customers " .
-            " where CustomerID = :customerid;";
-        $statement = $this->app->db->prepare($sql);
-        $params = array('customerid' => $id);
-        $queryComplete = $statement->execute($params);
-        $row = $statement->fetch();
-        $this->app->render('customer-edit.html', array('id' => $id, 'Customer' => $row));
+        $CustomerRepository = new \Loyalty\Datalayer\CustomerRepository($this->app->db);
+        $Customer = $CustomerRepository->Get($id);
+        $this->app->render('customer-edit.html', array('id' => $id, 'Customer' => $Customer));
     }
 
     public function edit_post($id) {
@@ -151,41 +125,30 @@ EOT;
             $this->app->stop();
         }
 
+        $CustomerRepository = new \Loyalty\Datalayer\CustomerRepository($this->app->db);
+
         if (isset($_POST['save'])) {
+            $Customer = $CustomerRepository->Get($id);
+            $Customer->FirstName = $firstname;
+            $Customer->LastName = $lastname;
+            $Customer->Telephone = $telephone;
+            $Customer->Email = $email;
+            $Customer->Points = $points;
 
-            $sql = <<<EOT
-                UPDATE Customers
-                SET FirstName = :fname, LastName = :lname, Points = :points, Telephone = :telephone, Email= :email
-                where CustomerID = :customerid
-EOT;
-
-            $statement = $this->app->db->prepare($sql);
-
-            $params = array('fname' => $firstname,
-                'lname' => $lastname,
-                'points' => $points,
-                'telephone' => $telephone,
-                'email' => $email,
-                'customerid' => $id);
-
-            $queryComplete = $statement->execute($params);
+            $queryComplete = $CustomerRepository->Save($Customer);
+            if ($queryComplete) {
+                $this->app->redirect("/search?searchText=$firstname $lastname");
+            } else {
+                $this->app->render('customer-edit.html', array('Customer' => $databag));
+                $this->app->stop();
+            }
         }
 
         else if (isset($_POST['delete'])) {
-            $sql = "delete from Customers where CustomerID = :customerid";
-            $statement = $this->app->db->prepare($sql);
-
-            $params = array('customerid' => $id);
-
-            $queryComplete = $statement->execute($params);
+            $queryComplete = $CustomerRepository->Delete($id);
+            $this->app->redirect("/search");
         }
 
-        if ($queryComplete) {
-            $this->app->redirect("/search?searchText=$firstname $lastname");
-        } else {
-            echo "Error: " .$sql. "<br>" . "PDO::errorInfo():\n";
-            print_r($statement->errorInfo());
-        }
     }
 
     public function IsNullOrEmptyString($question){
