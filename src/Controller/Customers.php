@@ -1,5 +1,6 @@
 <?php
 namespace Loyalty\Controller;
+use \Loyalty\Datalayer\CustomerRepository;
 
 class Customers {
 
@@ -29,7 +30,7 @@ class Customers {
             return;
         }
 
-        $CustomerRepository = new \Loyalty\Datalayer\CustomerRepository($this->app->db);
+        $CustomerRepository = new CustomerRepository($this->app->db);
         $results = $CustomerRepository->RawFuzzySearch($searchString);
 
         if ($results){
@@ -84,7 +85,7 @@ class Customers {
         }
 
         $Customer = new \Loyalty\Model\Customer($firstname, $lastname, $telephone, $email, $points);
-        $CustomerRepository = new \Loyalty\Datalayer\CustomerRepository($this->app->db);
+        $CustomerRepository = new CustomerRepository($this->app->db);
 
         $queryComplete = $CustomerRepository->Save($Customer);
 
@@ -98,7 +99,7 @@ class Customers {
 
     public function edit($id) {
         $this->app->requiresLogin;
-        $CustomerRepository = new \Loyalty\Datalayer\CustomerRepository($this->app->db);
+        $CustomerRepository = new CustomerRepository($this->app->db);
         $Customer = $CustomerRepository->Get($id);
         $this->app->render('customer-edit.html', array('id' => $id, 'Customer' => $Customer));
     }
@@ -125,7 +126,7 @@ class Customers {
             $this->app->stop();
         }
 
-        $CustomerRepository = new \Loyalty\Datalayer\CustomerRepository($this->app->db);
+        $CustomerRepository = new CustomerRepository($this->app->db);
 
         if (isset($_POST['save'])) {
             $Customer = $CustomerRepository->Get($id);
