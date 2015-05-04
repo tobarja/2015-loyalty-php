@@ -1,5 +1,7 @@
 <?php
 namespace Loyalty\Controller;
+use \Loyalty\Datalayer\RedeemLogRepository;
+use \Loyalty\Datalayer\CustomerRepository;
 
 class Freebies {
 
@@ -14,52 +16,41 @@ class Freebies {
 
     public function freebies($id) {
         $this->app->requiresLogin;
-        $sql = "select FirstName, LastName, Points, Telephone, Email, Points from Customers " .
-            "where CustomerID = :customerid;";
-        $statement = $this->app->db->prepare($sql);
-        $params = array('customerid' => $id);
-        $queryComplete = $statement->execute($params);
-        $row = $statement->fetch();
-        if ($row == FALSE) {
+        $CustomerRepository = new CustomerRepository($this->app->db);
+        $Customer = $CustomerRepository->Get($id);
+        if ($Customer->id() == null) {
             $this->app->redirect('/search');
         }
-        $this->app->render('freebies.html', array('id' => $id, 'Customer' => $row));
+        $this->app->render('freebies.html', array('id' => $id, 'Customer' => $Customer));
     }
 
     public function calculateAdd() {
         $this->app->requiresLogin;
+        $CustomerRepository = new CustomerRepository($this->app->db);
+        $CustomerID = $this->app->request->post('customerid');
+        $Customer = $CustomerRepository->Get($CustomerID);
         $redeem=null;
 
-        $username = $_SESSION["UserName"];
         $redeem = $_POST['redeem'];
-        $updatenum = $_POST['updatenum'];
-        $customerid = $_POST['customerid'];
 
-        $sql = "update Customers set Points = (Points + :updatenum), LastActive = CURRENT_TIMESTAMP where CustomerID=:customerid;";
-        $statement = $this->app->db->prepare($sql);
+        $additionalPoints = $this->app->request->post('updatenum');
+        if (!is_numeric($additionalPoints)) {
+            return false;
+        }
 
-        $statement -> bindValue(':updatenum', $updatenum);
-        $statement -> bindValue(':customerid', $customerid);
+        $Customer->Points = $Customer->Points + $additionalPoints;
 
-        $queryComplete = $statement->execute();
+        $queryComplete = $CustomerRepository->Save($Customer);
 
         if($redeem=="redeem"){
-            $sql = "insert into RedeemLog (User,Point) values (:username,-1);";
-            $statement = $this->app->db->prepare($sql);
-            $statement -> bindValue(':username', $username);
-            $statement->execute();
+            $RedeemLogRepository = new RedeemLogRepository($this->app->db);
+            $RedeemLog = new \Loyalty\Model\RedeemLog($_SESSION["UserName"], -1);
+            $RedeemLogRepository->Save($RedeemLog);
         }
 
         if($queryComplete){
-            $sql = "select Points from Customers where CustomerID=:customerid;";
-            $statement = $this->app->db->prepare($sql);
-
-            $statement -> bindValue(':customerid', $customerid);
-            $queryComplete = $statement->execute();
-            $rows = $statement->fetchAll(\PDO::FETCH_ASSOC);
-            foreach($rows as $row){ 
-                echo $row['Points'];
-            }
+            $Customer = $CustomerRepository->Get($CustomerID);
+            echo $Customer->Points;
         }
         else {
             echo "0 results";
@@ -69,37 +60,31 @@ class Freebies {
 
     public function calculateSubtract() {
         $this->app->requiresLogin;
+        $CustomerRepository = new CustomerRepository($this->app->db);
+        $CustomerID = $this->app->request->post('customerid');
+        $Customer = $CustomerRepository->Get($CustomerID);
         $redeem=null;
 
-        $username = $_SESSION["UserName"];
         $redeem = $_POST['redeem'];
-        $updatenum = $_POST['updatenum'];
-        $customerid = $_POST['customerid'];
 
-        $sql = "update Customers set Points = (Points - :updatenum), LastActive = CURRENT_TIMESTAMP where CustomerID=:customerid;";
-        $statement = $this->app->db->prepare($sql);
+        $subtractingPoints = $this->app->request->post('updatenum');
+        if (!is_numeric($subtractingPoints)) {
+            return false;
+        }
 
-        $statement -> bindValue(':updatenum', $updatenum);
-        $statement -> bindValue(':customerid', $customerid);
+        $Customer->Points = $Customer->Points - $subtractingPoints;
 
-        $queryComplete = $statement->execute();
+        $queryComplete = $CustomerRepository->Save($Customer);
 
         if($redeem=="redeem"){
-            $sql = "insert into RedeemLog (User,Point) values (:username,1);";
-            $statement = $this->app->db->prepare($sql);
-            $statement -> bindValue(':username', $username);
-            $statement->execute();
+            $RedeemLogRepository = new RedeemLogRepository($this->app->db);
+            $RedeemLog = new \Loyalty\Model\RedeemLog($_SESSION["UserName"], 1);
+            $RedeemLogRepository->Save($RedeemLog);
         }
 
         if($queryComplete){
-            $sql = "select Points from Customers where CustomerID=:customerid;";
-            $statement = $this->app->db->prepare($sql);
-            $statement -> bindValue(':customerid', $customerid);
-            $queryComplete = $statement->execute();
-            $rows = $statement->fetchAll(\PDO::FETCH_ASSOC);
-            foreach($rows as $row){ 
-                echo $row['Points'];
-            }
+            $Customer = $CustomerRepository->Get($CustomerID);
+            echo $Customer->Points;
         }
         else {
             echo "0 results";
