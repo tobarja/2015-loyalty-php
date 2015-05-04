@@ -84,7 +84,7 @@ class Customers {
             $this->app->stop();
         }
 
-        $Customer = new \Loyalty\Model\Customer($firstname, $lastname, $telephone, $email, $points);
+        $Customer = new \Loyalty\Model\Customer($firstname, $lastname, $telephone, $email, $points, 0);
         $CustomerRepository = new CustomerRepository($this->app->db);
 
         $queryComplete = $CustomerRepository->Save($Customer);
