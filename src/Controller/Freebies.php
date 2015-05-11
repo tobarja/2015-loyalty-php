@@ -44,7 +44,7 @@ class Freebies {
 
         if($redeem=="redeem"){
             $RedeemLogRepository = new RedeemLogRepository($this->app->db);
-            $RedeemLog = new \Loyalty\Model\RedeemLog($_SESSION["UserName"], -1);
+            $RedeemLog = new \Loyalty\Model\RedeemLog($CustomerID, $_SESSION["UserName"], -1);
             $RedeemLogRepository->Save($RedeemLog);
         }
 
@@ -78,7 +78,7 @@ class Freebies {
 
         if($redeem=="redeem"){
             $RedeemLogRepository = new RedeemLogRepository($this->app->db);
-            $RedeemLog = new \Loyalty\Model\RedeemLog($_SESSION["UserName"], 1);
+            $RedeemLog = new \Loyalty\Model\RedeemLog($CustomerID, $_SESSION["UserName"], 1);
             $RedeemLogRepository->Save($RedeemLog);
         }
 

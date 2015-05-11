@@ -11,7 +11,7 @@ class RedeemLogRepository {
 
     public function Get($id) {
         $sql = <<<EOT
-            select id, Time, User, Point from RedeemLog
+            select id, Time, Customer, User, Point from RedeemLog
             where id = :id
 EOT;
 
@@ -29,26 +29,28 @@ EOT;
     public function Save(\Loyalty\Model\RedeemLog $record) {
         if ($record->id() == null) {
             $sql = <<<EOT
-                insert into RedeemLog (Time, User, Point)
-                values (:Time, :User, :Point)
+                insert into RedeemLog (Time, Customer, User, Point)
+                values (:Time, :Customer, :User, :Point)
 EOT;
 
             $statement = $this->db->prepare($sql);
 
             $params = array('Time' => $record->Time,
+                'Customer' => $record->Customer,
                 'User' => $record->User,
                 'Point' => $record->Point);
 
         } else {
             $sql = <<<EOT
                 UPDATE RedeemLog
-                SET `Time` = :Time, `User` = :User, `Point` = :Point
+                SET `Time` = :Time, `Customer` = :Customer, `User` = :User, `Point` = :Point
                 where id = :id
 EOT;
 
             $statement = $this->db->prepare($sql);
 
             $params = array('Time' => $record->Time,
+                'Customer' => $record->Customer,
                 'User' => $record->User,
                 'Point' => $record->Point,
                 'id' => $record->id());
