@@ -30,7 +30,7 @@ class Accounting {
 
     public function view($year, $month) {
         $this->app->requiresAdmin;
-        $sql = "select Time,User,Point from RedeemLog where month(Time) = :Month and year(Time) = :Year;";
+        $sql = "select Time,Customer,User,Point from RedeemLog where month(Time) = :Month and year(Time) = :Year;";
         $statement = $this->app->db->prepare($sql);
         $queryComplete = $statement->execute(array('Year' => $year, 'Month' => $month));
         $rows = $statement->fetchAll(\PDO::FETCH_ASSOC);

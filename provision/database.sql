@@ -34,12 +34,13 @@ DROP TABLE IF EXISTS `RedeemLog`;
 CREATE TABLE `RedeemLog` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `Time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Customer` int(11) NOT NULL,
   `User` varchar(50) NOT NULL,
   `Point` int(3) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
-INSERT INTO `RedeemLog` VALUES (1,'2015-04-12 05:17:53','admin',1);
+INSERT INTO `RedeemLog` VALUES (1,'2015-04-12 05:17:53',1,'admin',1);
 DROP TABLE IF EXISTS `Users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
