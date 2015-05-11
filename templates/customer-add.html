@@ -6,35 +6,7 @@
 
     <title>MeanBean - Admin - Add Customer</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <link rel="stylesheet" href="styleSheet.css">
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-    <style>
-
-table
-{
-    margin-left:auto;
-    margin-right:auto;
-    border-collapse:collapse;
-}
-
-td
-{
-    text-align: right;
-    padding: 5px;
-}
-
-    </style>
+    {% include 'header-common.html' %}
 
 </head>
 
@@ -47,63 +19,68 @@ td
     <!-- End Navigation Bar -->
 
     <br>
-    <table>
 
-        <tr>
-            <td colspan="2" style="border-bottom:1px solid black;font-size:20px;">Add Customer</td>
-            <td>&nbsp;</td>
-        </tr>
+  <!-- Add New User Container -->
         <form action="" method="post">
-            <tr>
-                <td >First Name:</td>
-                <td ><input name="firstname" type="text" value="{{ Customer.FirstName }}" /></td>
+  <table width="480" border="0" cellpadding="0" cellspacing="0">
+    <tbody>
+      <tr>
+        <th colspan="2" class="cellBoxes" style="font-size: 35px" scope="col">New Customer</th>
+      </tr>
+      <tr>
+        <td width="125" class="cellBoxes"><span class="labels" style="font-size:20px;height:50px;margin-bottom:10px;vertical-align:middle;line-height:50px;">First Name:</span></td>
+        <td width="309"><span style="float:left;">
+          <input type="text" name="firstname" tabindex="1" class="searchBarShort" value="{{ Customer.FirstName }}"/>
+        </span></td>
                 <td>
                     {%  if Customer.posted == true %}
                     {%  if Customer.FirstName|length == 0 %}<span style="color:red;">*</span>{% endif %}
                     {% endif %}
                 </td>
-            </tr>
-
-            <tr>
-                <td >Last Name:</td>
-                <td ><input name="lastname" type="text" value="{{ Customer.LastName }}" /></td>
+      </tr>
+      <tr>
+        <td class="cellBoxes"><span class="labels" style="font-size:20px;height:50px;margin-bottom:10px;vertical-align:middle;line-height:50px;">Last Name:</span></td>
+        <td><span style="float:left;">
+          <input type="text" name="lastname" tabindex="2" class="searchBarShort" value="{{ Customer.LastName }}"/>
+        </span></td>
                 <td>
                     {%  if Customer.posted == true %}
                     {%  if Customer.LastName|length == 0 %}<span style="color:red;">*</span>{% endif %}
                     {% endif %}
                 </td>
-            </tr>
-
-            <tr>
-                <td >Telephone:</td>
-                <td ><input name="telephone" type="text" value="{{ Customer.Telephone }}" /></td>
+      </tr>
+      <tr>
+        <td class="cellBoxes"><span class="labels" style="font-size:20px;height:50px;margin-bottom:10px;vertical-align:middle;line-height:50px;">Telephone:</span></td>
+        <td><span style="float:left;">
+          <input type="text" name="telephone" tabindex="3" class="searchBarShort" value="{{ Customer.Telephone }}"/>
+        </span></td>
                 <td>
                     {%  if Customer.posted == true %}
                     {%  if Customer.Telephone|length == 0 %}<span style="color:red;">*</span>{% endif %}
                     {% endif %}
                 </td>
-            </tr>
-
-            <tr>
-                <td >E-mail:</td>
-                <td ><input name="email" type="text" value="{{ Customer.Email }}" /></td>
-                <td>&nbsp;</td>
-            </tr>
-
-            <tr>
-                <td >Points:</td>
-                <td ><input name="points" type="text" value="{{ Customer.Points }}" /></td>
-                <td>&nbsp;</td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Add" /></td>
-                <td>&nbsp;</td>
-            </tr>
-
-        </table>
-    </form>
+      </tr>
+      <tr>
+        <td class="cellBoxes"><span class="labels" style="font-size:20px;height:50px;margin-bottom:10px;vertical-align:middle;line-height:50px;">Email:</span></td>
+        <td><span style="float:left;">
+          <input type="text" name="email" tabindex="3" class="searchBarShort" />
+        </span></td>
+      </tr>
+      <tr>
+        <td class="cellBoxes"><span class="labels" style="font-size:20px;height:50px;margin-bottom:10px;vertical-align:middle;line-height:50px;">Points:</span></td>
+        <td><span style="float:left;">
+          <input type="text" name="points" tabindex="5" class="searchBarShort" />
+        </span></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td><span style="float:left;">
+          <input type="submit" name="newSubmit2" value="Add" tabindex="5" class="searchButton" ontouchstart="background: -webkit-linear-gradient(#ed1c24, #fe4a51);background: -o-linear-gradient(#ed1c24, #fe4a51);background: -moz-linear-gradient(#ed1c24, #fe4a51);background: linear-gradient(#ed1c24, #fe4a51);color: #fff;border-radius:20px;"/>
+        </span></td>
+      </tr>
+    </tbody>
+  </table>
+</form>
 
 </body>
 

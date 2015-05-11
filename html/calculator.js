@@ -41,7 +41,7 @@ $(document).ready(function(){
 	      }
   	});
 
-    $(".numberButtons").click(function()
+    $(".calculatorButtons").click(function()
     {
         //  get current calculator display
         var currentDisplay = $("#calc_display").text();
@@ -85,7 +85,7 @@ $(document).ready(function(){
         currentDisplay = parseInt(currentDisplay);
 
         //  get the current points
-        var oldPoints = $("#customerPoints").text();
+        var oldPoints = $("#systemPoints").text();
 
         //  had to set this to 0 to get around NAN if no value exists
         if (oldPoints == "")

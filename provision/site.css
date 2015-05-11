@@ -54,7 +54,25 @@
 	border-radius:20px;
 
 }
+.calculatorWideButtons2 {
+	margin:5px;
+	width:80px;
+	height:80px;
+	background: -webkit-linear-gradient(#4d6cbf, #3c59a8); 
+	background: -o-linear-gradient(#4d6cbf, #3c59a8); 
+	background: -moz-linear-gradient(#4d6cbf, #3c59a8); 
+	background: linear-gradient(#4d6cbf, #3c59a8);
+	color:#ffffff;
+	border-radius:20px;
+	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size:14px;
+	
+}
+
 .buttonDisplayBox {
+	line-height:75px;
+	font-size:45px;
+	text-align:center;
 	border:1px solid black;
 	height:75px;
 	width:405px;
@@ -83,6 +101,7 @@
 	opacity:0.92;
 }
 .cellHeading {
+	text-align:center;
 	vertical-align:middle;
 	display:table-cell;
 	font-size:20px;
@@ -94,6 +113,7 @@
 .cellBoxes {
 	padding-left:10px;
 	padding-bottom:10px;
+	text-align:left;
 }
 .numberButtons {
 	width:280px;

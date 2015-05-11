@@ -6,39 +6,7 @@
 
     <title>MeanBean - Search</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <link rel="stylesheet" href="styleSheet.css">
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
-
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-    <style>
-
-table
-{
-    margin-left:auto;
-    margin-right:auto;
-    border-collapse:collapse;
-}
-
-td
-{
-    text-align: right;
-    padding: 5px;
-}
-
-    </style>
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    {% include 'header-common.html' %}
 
     <script>
 
@@ -73,9 +41,19 @@ $(document).ready(function() {
 <body>
     {% include 'NavBar.html' %}
 
-    <center><div>Start typing to find customers</div></center><br />
-    <center><input type='text' id='search' value='{{ searchText }}'/></center>
-
+<table width="700" border="0" cellpadding="0" cellspacing="0" class="searchTable">
+  <tbody>
+    <tr>
+      <th width="140" class="searchHeading" scope="col">&nbsp;</th>
+      <th width="470"  scope="col" class="cellHeading"><span class="cellBoxes" style="font-size: 35px">Customer Search</span></th>
+      <th width="140" scope="col">&nbsp;</th>
+    </tr>
+    <tr>
+      <td colspan="2"><input name="search" type="search" id="search" size="100" class="searchBar" value="{{ searchText }}"></td>
+      <td><input type="submit" name="submit" id="submit" value="Search" class="searchButton" ontouchstart="background: -webkit-linear-gradient(#ed1c24, #fe4a51);background: -o-linear-gradient(#ed1c24, #fe4a51);background: -moz-linear-gradient(#ed1c24, #fe4a51);background: linear-gradient(#ed1c24, #fe4a51);color: #fff;border-radius:20px;"/></td>
+    </tr>
+  </tbody>
+</table>
     <div id="result"></div>
 </body>
 </html>

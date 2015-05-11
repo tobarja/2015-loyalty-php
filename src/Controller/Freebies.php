@@ -53,7 +53,7 @@ class Freebies {
             echo $Customer->Points;
         }
         else {
-            echo "0 results";
+            echo "Error";
         }
     }
 
