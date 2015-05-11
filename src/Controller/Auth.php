@@ -1,5 +1,6 @@
 <?php
 namespace Loyalty\Controller;
+use \Loyalty\Datalayer\UserRepository;
 
 class Auth {
     protected $app;
@@ -40,15 +41,13 @@ class Auth {
     public function login_post() {
         $username = $this->app->request->post('userName');
         $password = $this->app->request->post('password');
-        $pq = $this->app->db->prepare("select id, UserName, Admin, Password from Users where UserName = :username");
-        $pq->execute(array('username' => $username));
-        $row = $pq->fetch();
-        if ($row !== FALSE) {
-            if (password_verify($password, $row['Password'])) {
-                $_SESSION['UserID'] = $row['id'];
-                $_SESSION['UserName'] = $row['UserName'];
-                $_SESSION['Admin'] = $row['Admin'];
-            }
+
+        $UserRepository = new UserRepository($this->app->db);
+        $User = $UserRepository->GetByUserName($username);
+        if (password_verify($password, $User->Password)) {
+            $_SESSION['UserID'] = $User->id();
+            $_SESSION['UserName'] = $User->UserName;
+            $_SESSION['Admin'] = $User->Admin;
         }
         $this->app->response->redirect('/login');
     }

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <html>
@@ -7,18 +6,7 @@
 
     <title>MeanBean Login</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    <link rel="stylesheet" href="styleSheet.css">
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    {% include 'header-common.html' %}
 
 </head>
 
@@ -31,31 +19,35 @@
     <!-- End Navigation Bar -->
 
     <!-- Start Login Container -->
-
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12">
-
-                <div id="formRow" style="height:300px;width:330px;margin-left:auto;margin-right:auto;">
-                    <div style="font-size:35px;font-weight:bold;margin-bottom:10px;border-bottom:1px solid silver;">Login</div>
-                    <div id="formLabel" style="float:left;text-align:right;margin-right:1%;">
-                        <div class="labels" style="font-size:20px;height:50px;margin-bottom:10px;vertical-align:middle;line-height:50px;">Username:</div>
-                        <div class="labels" style="font-size:20px;height:50px;margin-bottom:10px;vertical-align:middle;line-height:50px;">Password:</div>
-                    </div>
-
-                    <div id="formInput" style ="float:left;">
-                        <form action="/login" method="post">
-                            <input type="text" name="userName" tabindex="1" style="font-size:20px;height:50px;margin-bottom:10px;width:228px;" /><br>
-                            <input type="password" name="password" tabindex="2" style="font-size:20px;height:50px;margin-bottom:10px;width:228px;" /><br>
-                            <input type="submit" name="Submit" value="Login" tabindex="5" style="font-size:20px;height:50px;padding:5px;" />
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- End Login Container -->
+    <form action="/login" method="post">
+    <table width="500" border="0" cellpadding="0" cellspacing="0">
+        <tbody>
+            <tr>
+                <th colspan="2" class="cellHeading" style="font-size: 35px" scope="col">Login</th>
+            </tr>
+            <tr>
+                <td width="224" align="left" class="cellBoxes"><span class="labels" style="font-size:20px;height:50px;margin-bottom:10px;vertical-align:middle;line-height:50px;">Username:</span></td>
+                <td width="376" align="center"><span style="float:left;">
+                        <input type="text" name="userName" tabindex="1" class="searchBarShort" />
+                </span></td>
+            </tr>
+            <tr>
+                <td align="left" class="cellBoxes"><span class="labels" style="font-size:20px;height:50px;margin-bottom:10px;vertical-align:middle;line-height:50px;">Password:</span></td>
+                <td height="75" align="center"><span style="float:left;">
+                        <input type="password" name="password" tabindex="2" class="searchBarShort"/>
+                </span></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><span style="float:left;">
+                        <input type="submit" name="Submit" value="Login" tabindex="5" class="logInButton" ontouchstart="background: -webkit-linear-gradient(#ed1c24, #fe4a51);background: -o-linear-gradient(#ed1c24, #fe4a51);background: -moz-linear-gradient(#ed1c24, #fe4a51);background: linear-gradient(#ed1c24, #fe4a51);color: #fff;border-radius:20px;"/>
+                </span></td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+</div>
+<!-- End Login Container -->
 
     </body>
 

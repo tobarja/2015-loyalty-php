@@ -17,6 +17,8 @@ a2ensite http-loyalty
 /vagrant/provision/database.sh
 
 [ -f /var/www/src/config.php ] || cp /vagrant/provision/config.php /var/www/src/config.php
+[ -f /var/www/html/site.css ] || cp /vagrant/provision/site.css /var/www/html/site.css
+[ -f /var/www/html/logo.png ] || cp /vagrant/provision/logo.png /var/www/html/logo.png
 
 [ -f /usr/local/bin/composer ] || (curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer)
 cp /vagrant/provision/composer_install /usr/local/bin/

@@ -1,30 +1,20 @@
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">MeanBean</a>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav">
+<div class="header"> <a href="/"><img src="/logo.png"></a>
+</div>
+<div class="navigation">
+    <div class="navigation">
+        <nav id="menubar1">
+            <a href="/" ontouchstart="background: -webkit-linear-gradient(#ed1c24, #fe4a51);background: -o-linear-gradient(#ed1c24, #fe4a51);background: -moz-linear-gradient(#ed1c24, #fe4a51);background: linear-gradient(#ed1c24, #fe4a51);color: #fff;border-radius:20px;">MeanBean</a>
                 {% if session.UserID > 0 %}
                 {% if session.Admin > 0 %}
-                <li><a href="/accounting">Accounting</a></li>
+            <a href="/accounting" ontouchstart="background: -webkit-linear-gradient(#ed1c24, #fe4a51);background: -o-linear-gradient(#ed1c24, #fe4a51);background: -moz-linear-gradient(#ed1c24, #fe4a51);background: linear-gradient(#ed1c24, #fe4a51);color: #fff;border-radius:20px;">Accounting</a>
                 {% endif %}
-                <li><a href="/customers/add">New Customer</a></li>
-                <li><a href="/search">Search</a></li>
+            <a href="/customers/add" ontouchstart="background: -webkit-linear-gradient(#ed1c24, #fe4a51);background: -o-linear-gradient(#ed1c24, #fe4a51);background: -moz-linear-gradient(#ed1c24, #fe4a51);background: linear-gradient(#ed1c24, #fe4a51);color: #fff;border-radius:20px;">New Customer</a>
+            <a href="/search" ontouchstart="background: -webkit-linear-gradient(#ed1c24, #fe4a51);background: -o-linear-gradient(#ed1c24, #fe4a51);background: -moz-linear-gradient(#ed1c24, #fe4a51);background: linear-gradient(#ed1c24, #fe4a51);color: #fff;border-radius:20px;">Search</a>
                 {% endif %}
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
                 {% if session.UserID > 0 %}
-                <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Log Out</a></li>
+            <a href="/logout" ontouchstart="background: -webkit-linear-gradient(#ed1c24, #fe4a51);background: -o-linear-gradient(#ed1c24, #fe4a51);background: -moz-linear-gradient(#ed1c24, #fe4a51);background: linear-gradient(#ed1c24, #fe4a51);color: #fff;border-radius:20px;">Log Out</a></nav>
                 {% else %}
-                <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
+            <a href="/login" ontouchstart="background: -webkit-linear-gradient(#ed1c24, #fe4a51);background: -o-linear-gradient(#ed1c24, #fe4a51);background: -moz-linear-gradient(#ed1c24, #fe4a51);background: linear-gradient(#ed1c24, #fe4a51);color: #fff;border-radius:20px;">Log In</a></nav>
                 {% endif %}
-            </ul>
-        </div>
     </div>
-</nav>
+</div>
