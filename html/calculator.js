@@ -7,7 +7,7 @@ $(document).ready(function(){
 		var redeemed = "redeem";
 		
 		$.post("/freebies/calculateAdd", {updatenum: text, customerid: custid, redeem: redeemed}, function(data){
-		$("#systemPoints").html(data).show();
+		$("#customerPoints").html(data).show();
 		console.log(data);
 		$("#summary").html($("#summary").html()+"+10 (undo)<br/>");
 	}) //end post
@@ -21,7 +21,7 @@ $(document).ready(function(){
      	if( parseInt($("#systemPoints").text()) > 9 )
 		{
 			$.post("/freebies/calculateSubtract", {updatenum: text, customerid: custid, redeem: redeemed}, function(data){
-			$("#systemPoints").html(data).show();
+			$("#customerPoints").html(data).show();
 			console.log(data);
 			$("#summary").html($("#summary").html()+"-10 (redeem)<br/>");
 
@@ -85,7 +85,7 @@ $(document).ready(function(){
         currentDisplay = parseInt(currentDisplay);
 
         //  get the current points
-        var oldPoints = $("#systemPoints").text();
+        var oldPoints = $("#customerPoints").text();
 
         //  had to set this to 0 to get around NAN if no value exists
         if (oldPoints == "")
@@ -105,12 +105,12 @@ $(document).ready(function(){
         if ( currentDisplay > 0 )
           {
 
-			$("#summary").html($("#summary").html()+"+"+points+"<br/>");
+			$("#summary").html($("#summary").html()+"+"+currentDisplay+"<br/>");
 			var custid = $("#customerid").val();
 			var redeemed = "not";
 
 			$.post("/freebies/calculateAdd", {updatenum: currentDisplay, customerid: custid, redeem: redeemed}, function(data){
-			$("#systemPoints").html(data).show();
+			$("#customerPoints").html(data).show();
 			console.log(data);
 			});
 
@@ -144,7 +144,7 @@ $(document).ready(function(){
         //  converst oldPoints to INT in case it isn't already
         oldPoints = parseInt(oldPoints);
 
-		if (currentDisplay > parseInt($("#systemPoints").text()))
+		if (currentDisplay > parseInt($("#customerPoints").text()))
         {
             alert("You can't take away more points than the customer has.");
         }
@@ -158,13 +158,13 @@ $(document).ready(function(){
 
 		if ( currentDisplay > 0)
 		{
-			$("#summary").html($("#summary").html()+"-"+points+"<br/>");
+			$("#summary").html($("#summary").html()+"-"+currentDisplay+"<br/>");
 
 			var custid = $("#customerid").val();
 			var redeemed = "not";
 
 			$.post("/freebies/calculateSubtract", {updatenum: currentDisplay, customerid: custid, redeem: redeemed}, function(data){
-			$("#systemPoints").html(data).show();
+			$("#customerPoints").html(data).show();
 			console.log(data);
 			});
 		}
